@@ -48,6 +48,9 @@ gem "jquery-rails"
 gem "bootstrap"
 gem "sassc-rails"
 
+#Faker
+gem "faker"
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
