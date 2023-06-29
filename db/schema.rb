@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_27_080505) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_29_034552) do
   create_table "albums", force: :cascade do |t|
-    t.boolean "sharing_mode"
+    t.string "sharing_mode"
     t.string "description"
     t.string "title"
     t.datetime "created_at", null: false
@@ -31,7 +31,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_27_080505) do
   end
 
   create_table "photos", force: :cascade do |t|
-    t.boolean "sharing_mode"
+    t.string "sharing_mode"
     t.string "description"
     t.string "title"
     t.binary "image"
@@ -49,9 +49,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_27_080505) do
     t.string "email"
     t.string "role"
     t.string "password"
+    t.binary "avatar"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "avatar"
   end
 
   add_foreign_key "albums", "users"
