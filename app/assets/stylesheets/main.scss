@@ -1,0 +1,134 @@
+#header {
+    /* background-color: var(--primary); */
+    color: var(--white);
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .user-info > img {
+    width: 30px;
+    height: 30px;
+  }
+  
+  /*# sourceMappingURL=header.css.map */
+    
+
+.main-content {
+    flex: 1;
+}
+.authen-wrapper {
+    max-width: 400px;
+    /* min-height: 50vh; */
+    max-height: 80vh;
+    background-color: #f9f9f9;
+}
+
+.feeds-control .btn-group>.btn-group:not(:first-child),
+.btn-group>:not(.btn-check:first-child)+.btn {
+    margin-left: -4px;
+}
+
+.feeds-options {
+    top: 88px;
+    list-style: none;
+    z-index: 100;
+
+}
+
+.feeds-options>li>a {
+    color: #000;
+    text-decoration: none;
+}
+
+.feeds-options>.active>a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.post-item {
+    aspect-ratio: 2 / 1;
+    /* overflow: hidden; */
+    /* padding: 2px; */
+}
+
+
+.post-image {
+    /* position: absolute; */
+    aspect-ratio: 1 / 1;
+}
+
+.post-image-container:has(> :nth-child(n+2)) {
+    transform: scale(0.88);
+}
+
+
+.post-image:not(:nth-child(1)) {
+    aspect-ratio: 1 / 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+
+.post-image:nth-child(4n) {
+    transform: rotate(3deg);
+    z-index: 4;
+}
+
+.post-image-:nth-child(4n+2) {
+    transform: rotate(6deg);
+    z-index: 3;
+}
+
+.post-image:nth-child(4n+3) {
+    transform: rotate(9deg);
+    z-index: 2;
+}
+
+
+
+.image-frame {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+.image-label {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 150px;
+    width: 150px;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+    color: #000;
+    border: 2px dashed #ced4da;
+}
+
+.plus-symbol {
+    font-size: 60px;
+    /* Adjust the font size as needed */
+    line-height: 1;
+}
+
+.image-preview-frame {
+    width: 150px;
+    height: 150px;
+}
+
+.profile__avatar {
+    cursor: pointer;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    height: 150px;
+    width: 150px;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+    color: #000;
+}
