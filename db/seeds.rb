@@ -20,7 +20,6 @@
   # Seed 20 albums
   20.times do
     Album.create(
-      sharing_mode: Faker::Boolean.boolean,
       description: Faker::Lorem.sentence,
       title: Faker::Lorem.word,
       user_id: User.pluck(:id).sample
@@ -30,7 +29,6 @@
   # Seed 50 photos
   50.times do
     Photo.create(
-      sharing_mode: Faker::Boolean.boolean,
       description: Faker::Lorem.sentence,
       title: Faker::Lorem.word,
       image: Faker::LoremFlickr.image(size: "500x500"),
