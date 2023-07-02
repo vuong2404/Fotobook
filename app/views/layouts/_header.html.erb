@@ -1,17 +1,23 @@
 <div class="bg-primary" id="header">
     <header class="header container py-1 d-flex align-items-center">
-        <h1 class="me-3">Fotobook</h1>
+        <%= link_to("Fotobook", root_path, class: "text-white h2 m-0 text-decoration-none") %>
         <div class="input-group w-auto position-relative px-2">
             <input type="text" class="form-control" placeholder="Search for photos/albums..." aria-label="Recipient's username">
             <span class="input-icon-right cursor-pointer"><i class="fa-solid fa-magnifying-glass text-dark"></i></span>
         </div>
+
+
+        
+        <% if current_user %>
+            <%= link_to(edit_user_registration_path, class: 'user-info d-flex ms-auto align-items-center text-white text-decoration-none') do %>
+                <img src=<%= current_user.avatar %> class="user-info__avatar rounded-circle border">
+                <span class="ms-2"><%= current_user.fname + " " + current_user.lname %></span>
+            <% end %>
+            <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "btn btn-outline-success text-white ms-4" %>
+        <% else %>
+            <%= link_to('Login', new_user_session_path, class: "ms-auto btn btn-outline-success text-white ms-4") %>
+        <% end %>      
+        
     
-        <div class="btn user-info d-flex ms-auto align-items-center text-white cursor-pointer">
-            <img src="https://static-00.iconduck.com/assets.00/avatar-default-symbolic-icon-2048x1949-pq9uiebg.png"
-                alt="avatar" class="user-info__avatar rounded-circle border">
-            <span class="ms-2">Minh Vương</span>
-        </div>
-    
-        <button class="btn text-white ms-4">Logout</button>
     </header>
 </div>

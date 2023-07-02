@@ -1,0 +1,40 @@
+
+<h2 class="text-center text-primary m-0">FotoBook Login</h2>
+<div class="flex-fill d-flex flex-column justify-content-center align-items-center w-100 h-100 p-5">
+  <div class="authen-wrapper shadow-sm w-100 mx-auto p-3 mt-2 rounded-4">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), 
+      html: { class: "d-flex flex-column align-items-center p-1 m-auto" }) do |f| %>
+
+      <%= image_tag("loginImg.png", class: "mx-auto")%>
+      <div class="form-group w-100 mb-2">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+      </div>
+
+      <div class="form-group w-100 mb-2">
+        <%= f.label :password %><br />
+        <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="field">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me %>
+        </div>
+      <% end %>
+
+      <div class="actions">
+        <%= f.submit "Log in", class: "m-2 px-3 py-1 btn btn-primary" %>
+      </div>
+
+      <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+        <%= link_to "Forgot your password?", new_password_path(resource_name), class:"text-primary text-decoration-none my-2" %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+    <%= link_to "Create new accout", new_registration_path(resource_name), class:"text-primary text-decoration-none my-2" %>
+  <% end %>
+</div>
+

@@ -1,2 +1,3 @@
 class Connection < ApplicationRecord
+    
 end
