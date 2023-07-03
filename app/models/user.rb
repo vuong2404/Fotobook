@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+    devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
     attr_readonly :role
 
     before_create :set_default_value
@@ -17,5 +21,7 @@ class User < ApplicationRecord
     def set_default_value
         !self.avatar && self.avatar = "https://st3.depositphotos.com/9998432/13335/v/600/depositphotos_133352156-stock-illustration-default-placeholder-profile-icon.jpg"
         !self.role && self.role = "user"
+        !self.fname && self.fname = ""
+        !self.lname && self.lname = ""
     end
 end
