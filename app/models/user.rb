@@ -15,6 +15,9 @@ class User < ApplicationRecord
 
     has_many :albums 
     has_many :photos, through: :albums
+    has_one_attached :avatar do |attachable|
+      attachable.variant :thumb, resize_to_limit: [200, 200]
+    end
 
     private
 
