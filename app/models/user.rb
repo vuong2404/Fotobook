@@ -15,6 +15,11 @@ class User < ApplicationRecord
 
     has_many :albums 
     has_many :photos, through: :albums
+    has_many :followers_connections, class_name: "Connection", foreign_key: 'following_id'
+    has_many :followings_connections, class_name: "Connection", foreign_key: 'follower_id'
+
+    has_many :followers, through: :followers_connections, source: :follower
+    has_many :followings, through: :followings_connections, source: :following
     has_one_attached :avatar do |attachable|
       attachable.variant :thumb, resize_to_limit: [200, 200]
     end
@@ -22,7 +27,6 @@ class User < ApplicationRecord
     private
 
     def set_default_value
-        !self.avatar && self.avatar = "https://st3.depositphotos.com/9998432/13335/v/600/depositphotos_133352156-stock-illustration-default-placeholder-profile-icon.jpg"
         !self.role && self.role = "user"
         !self.fname && self.fname = ""
         !self.lname && self.lname = ""
