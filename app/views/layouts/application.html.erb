@@ -12,11 +12,16 @@
 
   <body>
 
-
     <div class='wrapper'>
       <%= render 'layouts/header' %>       
-      <p class="alert"><%= alert %></p> 
-      <%= yield %>
+      <div class="container-xl position-relative main-content">
+
+          <p class="alert"><%= alert %></p> 
+          <%= yield %>
+          <%= turbo_frame_tag "remote_modal", target: "_top" %>
+      </div>
     </div>
   </body>
+
+  
 </html>

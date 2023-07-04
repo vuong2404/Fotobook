@@ -1,43 +1,127 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="row justify-content-center position-relative h-100">
+  <div class="col-12 col-lg-10 col-xl-10 d-flex flex-column shadow rounded bg-white p-4">
+    <header class="d-flex align-items-center justify-content-between pb-3 border-bottom">
+      <span class="fw-bold fs-4">Edit profile</span>
+    </header>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="d-flex flex-column col-md-8 col-12 mx-auto">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+        <div class="field form-group d-flex justify-content-center my-2 w-100">
+            <%= f.file_field :avatar, class: "image-frame" %>
+            <%= f.label :avatar, id: "avatar-preview", class: "profile__avatar border", style: "background: url('#{url_for(current_user.avatar)}') center / cover no-repeat ; aspect-ratio: 1/1;" do %>
+              <span class="bg-light text-dark mb-2 bg-opacity-75 shadow px-4 py-1 rounded">CHANGE</span>
+            <% end %>
+            <%= javascript_tag do %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+                const imageInput = document.getElementById('user_avatar');
+                const newImage = document.getElementById('avatar-preview');
+                console.log(imageInput)
+                imageInput.addEventListener('change', function(e) {
+                  let file = e.target.files[0];
+                  let reader = new FileReader();
+
+                  reader.onload = function(e) {
+                    newImage.style.backgroundImage =`url(${reader.result})`
+                  };
+
+                  reader.readAsDataURL(file);
+                });
+        
+            <%end %>
+        </div>
+        <p class="text-primary fw-bold">Basic infomation</p>
+
+        <div class="field form-group d-flex align-items-center my-2">
+          <%= f.label :email, class: 'text-nowrap col-3' %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control mx-sm-3 w-100" %>
+        </div>
+
+        <div class="field form-group d-flex align-items-center my-2">
+          <%= f.label "First name" , class: 'text-nowrap col-3'%>
+          <%= f.text_field :fname, autofocus: true, autocomplete: "email", class:"form-control mx-sm-3 w-100" %>
+        </div>
+
+        <div class="field form-group d-flex align-items-center my-2">
+          <%= f.label "Last name", class: 'text-nowrap col-3' %>
+          <%= f.text_field :lname, autofocus: true, autocomplete: "email", class:"form-control mx-sm-3 w-100" %>
+        </div>
+
+         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+        <% end %>
+
+        <div class="field form-group d-flex align-items-center my-2">
+          <%= f.label :current_password , class: 'text-nowrap col-3'%> 
+          <%= f.password_field :current_password, autocomplete: "current-password", class:"form-control mx-sm-3 w-100" %>
+          <i>(we need your current password to confirm your changes)</i><br />
+        </div> 
+
+
+        <div class="actions w-100 text-center">
+          <%= f.submit "Save change", class: "btn btn-primary" %>
+        </div>
+      <% end %> <br /> <br /> 
+
+
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+        
+        <p class="text-primary fw-bold">Password</p>
+        <div class="field form-group d-flex align-items-center my-2">
+          <%= f.label :current_password , class: 'text-nowrap col-3'%> 
+          <%= f.password_field :current_password, autocomplete: "current-password", class:"form-control mx-sm-3 w-100" %>
+        </div> 
+
+        <div class="field form-group d-flex align-items-center my-2">
+          <%= f.label :password, "New password", class: 'text-nowrap col-3' %>
+          <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class:"form-control mx-sm-3 w-100" %>
+        </div>
+
+        <div class="field form-group d-flex align-items-center my-2">
+          <%= f.label :password_confirmation, "Confirm new password", class: 'text-nowrap col-3' %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control mx-sm-3 w-100" %>
+        </div>
+
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+        <% end %>
+
+        <div class="actions w-100 text-center">
+          <%= f.submit "Change my password", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+        
+    </div>
   </div>
+</div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+<%
+=begin%>
+ <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+        <% end %>
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
+        <div class="field">
+          <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+          <%= f.password_field :password, autocomplete: "new-password" %>
+          <% if @minimum_password_length %>
+            <br />
+            <em><%= @minimum_password_length %> characters minimum</em>
+          <% end %>
+        </div>
 
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
+        <div class="field">
+          <%= f.label :password_confirmation %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+        </div>
 
-<h3>Cancel my account</h3>
-
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
-
-<%= link_to "Back", :back %>
+        <div class="field">
+          <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+          <%= f.password_field :current_password, autocomplete: "current-password" %>
+        </div> 
+         
+<%
+=end%>
