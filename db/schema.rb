@@ -62,7 +62,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_03_072401) do
     t.string "sharing_mode"
     t.string "description"
     t.string "title"
-    t.binary "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
