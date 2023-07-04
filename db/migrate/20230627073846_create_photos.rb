@@ -4,7 +4,6 @@ class CreatePhotos < ActiveRecord::Migration[7.0]
       t.boolean :sharing_mode
       t.string :description
       t.string :title
-      t.binary :image
 
       t.timestamps
     end

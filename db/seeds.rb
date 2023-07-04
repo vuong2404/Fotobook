@@ -11,9 +11,7 @@
       fname: Faker::Name.first_name,
       lname: Faker::Name.last_name,
       email: Faker::Internet.email,
-      role: Faker::Lorem.word,
       password: Faker::Internet.password,
-      avatar: Faker::Avatar.image
     )
   end
   
@@ -31,7 +29,6 @@
     Photo.create(
       description: Faker::Lorem.sentence,
       title: Faker::Lorem.word,
-      image: Faker::LoremFlickr.image(size: "500x500"),
       user_id: User.pluck(:id).sample,
       album_id: Album.pluck(:id).sample
     )
