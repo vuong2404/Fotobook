@@ -1,0 +1,12 @@
+<div class="contanter-fluid">
+  <div class='row'> 
+    <% @photos.each do |item| %>
+      <div class="card col-md-3 post-item p-2 border-0 text-center">
+          <div class="position-relative post-image-container" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              <%= image_tag(item.image, class: "img-fluid rounded-start post-image") %>
+              <p class="mt-2"><%= item.title%></p>
+         </div>
+      </div>
+    <% end %>
+  </div>
+</div>
