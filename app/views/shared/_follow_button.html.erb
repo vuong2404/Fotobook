@@ -1,0 +1,5 @@
+ <% if is_followed %>
+    <%= button_to "Unfollow", unfollow_user_path(profile_user_id), method: :delete, class: "btn btn-primary my-3" %> 
+<%else %>
+    <%= button_to "Follow", follow_user_path(profile_user_id), method: :post, class: "btn btn-outline-primary my-3" %> 
+<%end %>

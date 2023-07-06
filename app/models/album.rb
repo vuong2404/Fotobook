@@ -4,7 +4,7 @@ class Album < ApplicationRecord
   validates :sharing_mode , inclusion: {in: %w(private public), message: "Sharing mode must be private or public", allow_nil: true }
 
   belongs_to :user
-  has_many :photos, through: :user
+  has_many :photos
 
   private
   def set_default_value

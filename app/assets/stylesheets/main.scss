@@ -132,3 +132,14 @@
     background-color: #f8f9fa;
     color: #000;
 }
+
+.profile-image-counter {
+    display: flex ;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    // min-width: 60px;
+    // min-height: 60px;
+    padding: 16px;
+    background-color: rgba(0,0,0,0.5);
+}

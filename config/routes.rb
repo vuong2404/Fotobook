@@ -1,18 +1,13 @@
 Rails.application.routes.draw do
+  get "profile/:id", to: "profile#show", as: :profile
 
-  get '/feeds/photos', to: "photos#feed" 
-  get '/feeds/albums', to: "albums#feed" 
-  get '/discovery/albums', to: "albums#discovery" 
-  get '/discovery/photos', to: "photos#discovery" 
-  get 'photos/new/:id', to: "photos#create"
-  get 'photos/update'
-  get 'photos/delete'
-  get 'albums/create'
-  get 'albums/update'
-  get 'albums/delete'
+  post "follow/:user_id", to: "connections#create", as: :follow_user
+  delete "unfollow/:user_id", to: "connections#destroy", as: :unfollow_user
+
+  resources :photos, :albums
   devise_for :users, controllers: {
-    sessions: 'users/sessions'
+    sessions: 'users/sessions',
   }
-  root "static_pages#home"
+  root "home#feed"
 
 end
