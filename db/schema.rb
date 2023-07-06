@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_03_072401) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_05_101534) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -49,11 +49,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_03_072401) do
     t.index ["user_id"], name: "index_albums_on_user_id"
   end
 
-  create_table "connections", force: :cascade do |t|
+  create_table "connections", id: false, force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "following_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "follower_id", null: false
-    t.integer "following_id", null: false
+    t.index ["follower_id", "following_id"], name: "index_connections_on_follower_id_and_following_id", unique: true
     t.index ["follower_id"], name: "index_connections_on_follower_id"
     t.index ["following_id"], name: "index_connections_on_following_id"
   end
@@ -68,6 +69,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_03_072401) do
     t.integer "album_id"
     t.index ["album_id"], name: "index_photos_on_album_id"
     t.index ["user_id"], name: "index_photos_on_user_id"
+  end
+
+  create_table "temporary_connections", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "follower_id", null: false
+    t.integer "following_id", null: false
+    t.index ["follower_id"], name: "index_temporary_connections_on_follower_id"
+    t.index ["following_id"], name: "index_temporary_connections_on_following_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -93,4 +103,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_03_072401) do
   add_foreign_key "connections", "users", column: "following_id"
   add_foreign_key "photos", "albums"
   add_foreign_key "photos", "users"
+  add_foreign_key "temporary_connections", "users", column: "follower_id"
+  add_foreign_key "temporary_connections", "users", column: "following_id"
 end
