@@ -5,7 +5,7 @@
     email: Faker::Internet.email,
     password: "123456",
   )
-end
+end	
 
 # Seed 20 albums
 20.times do

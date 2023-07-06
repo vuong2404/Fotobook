@@ -14,6 +14,7 @@ class User < ApplicationRecord
     # validates :role, inclusion: {in: %w(user admin)}
 
     has_many :albums 
+
     has_many :photos, through: :albums
     has_many :photos
 
