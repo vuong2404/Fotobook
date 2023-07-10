@@ -49,15 +49,29 @@
 }
 
 .post-item {
-    aspect-ratio: 2 / 1;
-    /* overflow: hidden; */
+    // aspect-ratio: 1 / 1;
+    // max-height: 300px;
+    // overflow: hidden;
     /* padding: 2px; */
+    .card-title {
+        -webkit-line-clamp: 2;
+    }
+    .card-text {
+        -webkit-line-clamp: 4;
+    } 
+    .card-text, .card-title {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
 }
+
+
 
 
 .post-image {
     /* position: absolute; */
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 2 / 2.5;
 }
 
 .post-image-container:has(> :nth-child(n+2)) {
@@ -66,7 +80,6 @@
 
 
 .post-image:not(:nth-child(1)) {
-    aspect-ratio: 1 / 1;
     position: absolute;
     top: 0;
     left: 0;
@@ -143,3 +156,4 @@
     padding: 16px;
     background-color: rgba(0,0,0,0.5);
 }
+
