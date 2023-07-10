@@ -19,11 +19,15 @@
             <li class="my-2"><a href="#" class="">Feeds</a></li>
             <li class="my-2 active"><a href="#" class="">My photos</a></li>
             <li class="my-2"><a href="#" class="">My albums</a></li>
-        </ul>     
+      </ul>     
       <div class="container-xl position-relative main-content">
         <div class="row justify-content-center position-relative h-100">
           <div class="col-12 col-lg-10 col-xl-10 d-flex flex-column shadow rounded bg-white p-4">
-            <p class="alert"><%= alert %></p> 
+            <%
+=begin%>
+ <p class="alert"><%= alert %></p>  
+<%
+=end%>
             <%= yield %>
             <%= turbo_frame_tag "remote_modal", target: "_top" %>
           </div>

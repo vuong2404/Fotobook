@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  get "profile/:id", to: "profile#show", as: :profile
+  root "home#feed"
+
+  get "/profile/:id", to: "profile#show", as: :profile
 
   post "follow/:user_id", to: "connections#create", as: :follow_user
   delete "unfollow/:user_id", to: "connections#destroy", as: :unfollow_user
@@ -7,7 +9,8 @@ Rails.application.routes.draw do
   resources :photos, :albums
   devise_for :users, controllers: {
     sessions: 'users/sessions',
+    registrations: 'users/registrations' 
   }
-  root "home#feed"
+
 
 end
