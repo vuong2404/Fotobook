@@ -16,7 +16,7 @@
                 </div>
               </div>
 
-              <%= render partial: "shared/follow_button", locals: {profile_user_id: item.id, is_followed: current_user.follow?(item.id)} %>
+              <%= render partial: "shared/follow_button", locals: {profile_user_id: item.id, is_followed: current_user && current_user.follow?(item.id)} %>
     
             </div>
       </div>
