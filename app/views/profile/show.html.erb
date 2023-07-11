@@ -3,7 +3,7 @@
   <div class="profile-info flex-fill justify-content-end h-100">
     <% if current_user %>
       <% if @is_owner %>
-        <button class="btn btn-outline-primary my-3">Edit profile</button>
+        <%= link_to "Edit profile", edit_user_registration_path, class: "btn btn-outline-primary my-3" %>
       <%else %>
         <%= render partial:  'shared/follow_button', locals: {profile_user_id: @profile_user_id, is_followed: @is_followed} %> 
       <%end %>

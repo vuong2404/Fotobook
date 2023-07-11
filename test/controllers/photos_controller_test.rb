@@ -1,13 +1,13 @@
 require "test_helper"
 
 class PhotosControllerTest < ActionDispatch::IntegrationTest
-  test "should get feed" do
-    get photos_feed_url
+  test "should get edit" do
+    get photos_edit_url
     assert_response :success
   end
 
-  test "should get discovery" do
-    get photos_discovery_url
+  test "should get destroy" do
+    get photos_destroy_url
     assert_response :success
   end
 
@@ -21,8 +21,8 @@ class PhotosControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get delete" do
-    get photos_delete_url
+  test "should get new" do
+    get photos_new_url
     assert_response :success
   end
 end

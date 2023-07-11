@@ -1,12 +1,20 @@
 <div class="contanter-fluid">
+  <div class='row'>
+    <%= link_to "Add new photos", new_photo_path, class: "btn btn-success w-25 ms-auto" %>
+  </div>
   <div class='row'> 
-    <% @photos.each do |item| %>
-      <div class="card col-md-3 post-item p-2 border-0 text-center">
-          <div class="position-relative post-image-container" data-bs-toggle="modal" data-bs-target="#exampleModal">
-              <%= image_tag(item.image, class: "img-fluid rounded-start post-image") %>
-              <p class="mt-2"><%= item.title%></p>
-         </div>
-      </div>
+    <% if @photos.size > 0 %>
+      <% @photos.each do |item| %>
+        <div class="card col-md-2 post-item p-2 border-0 text-center">
+            <div class="position-relative post-image-container" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <%= image_tag(item.image, class: "img-fluid rounded-start post-image") %>
+                <p class="mt-2"><%= item.title%></p>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <%= render partial: "shared/empty_record", locals: {record: "photo"}%>
     <% end %>
+
   </div>
 </div>

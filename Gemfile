@@ -52,6 +52,8 @@ gem "sassc-rails"
 #Faker
 gem "faker"
 
+gem "hotwire-rails", "~> 0.1.0"
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
