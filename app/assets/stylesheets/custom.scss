@@ -16,6 +16,10 @@ body {
   padding: 0;
 }
 
+img {
+  object-fit: cover;
+}
+
 
 .cursor-pointer {
   cursor: pointer;
@@ -142,4 +146,9 @@ body {
     color: var(--primary)
     /* margin-left: -1px; */
   }
+}
+
+
+.custom-model {
+  --bs-modal-width: 756px;
 }

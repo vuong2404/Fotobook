@@ -44,9 +44,9 @@
     <%= render 'profile/albums' %>
   </div>
   <div class="tab-pane" id="followers" role="tabpanel" aria-labelledby="messages-tab">
-    <%= render 'profile/followers' %>
+    <%= render partial: 'profile/follow-list', object: @followers, as: "follows" %>
   </div>
   <div class="tab-pane" id="followings" role="tabpanel" aria-labelledby="settings-tab">
-    <%= render 'profile/followings' %>
+    <%= render partial: 'profile/follow-list', object: @followings, as: "follows" %>
   </div>
 </div>

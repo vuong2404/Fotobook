@@ -1,4 +1,5 @@
 class ProfileController < ApplicationController
+  skip_before_action :authenticate_user! , only: [:show]
   def show
     user_id = params[:id]
     page = params[:page] || "photos"

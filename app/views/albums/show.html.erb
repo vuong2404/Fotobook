@@ -1,0 +1,30 @@
+<%= render "shared/remote_modal", title: @album.title do %>	
+  <div id="carouselExampleControlsNoTouching" class="carousel slide carousel-fade" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <% @album.photos.each_with_index do |photo, index| %>
+        <div class="<%= "carousel-item #{index == 0 ? 'active' : ''}"%>" >
+          <%= image_tag photo.image, class:"img-fluid rounded-start w-100", style: "aspect-ratio: 2/1; object-fit: cover" %>
+        </div>  
+      <% end %>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+	<p class="card-text"><%= @album.description %> </p>
+	<div class="d-flex justify-content-between mt-auto align-items-center">
+    <div class="d-flex align-items-center">
+      <i class="fa-regular fa-heart me-1"></i>
+      <i class="fa-solid fa-heart d-none me-2"></i>
+      <span class="card-text m-0">233</span>
+    <div>
+      <p class="card-text"><small class="text-muted">4:56 12/6/2023</small></p>
+    </div>    
+  </div>
+<% end %>
