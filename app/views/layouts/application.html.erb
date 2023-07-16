@@ -14,20 +14,10 @@
 
     <div class='wrapper'>
       <%= render 'layouts/header' %>  
-
-      <ul class="h-100 ps-5 position-fixed feeds-options d-none d-xl-block">
-            <li class="my-2"><a href="#" class="">Feeds</a></li>
-            <li class="my-2 active"><a href="#" class="">My photos</a></li>
-            <li class="my-2"><a href="#" class="">My albums</a></li>
-      </ul>     
+      <%= render "layouts/sidebar" %>
       <div class="container-xl position-relative main-content">
         <div class="row justify-content-center position-relative h-100">
           <div class="col-12 col-lg-10 col-xl-10 d-flex flex-column shadow rounded bg-white p-4">
-            <%
-=begin%>
- <p class="alert"><%= alert %></p>  
-<%
-=end%>
             <%= yield %>
             <%= turbo_frame_tag "remote_modal", target: "_top" %>
           </div>

@@ -1,6 +1,6 @@
 <div class="contanter-fluid">
   <div class='row'> 
-    <% @followers.each do |item| %>
+    <% follows.each do |item| %>
        <div class = "card col-md-3 text-center border-0">
            <div class="bg-light p-2 my-3 border border-primary rounded shadow" data-bs-toggle="modal" data-bs-target="#exampleModal">
               <%= link_to image_tag(item.avatar, class: "w-50 rounded-circle border border-3 border-secondary" ), profile_path(item.id)%>

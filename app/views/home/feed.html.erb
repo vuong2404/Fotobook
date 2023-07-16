@@ -10,45 +10,10 @@
 <!-- list posts -->
 <div class="tab-content" id="pills-tabContent">
   <div class="tab-pane fade show active" id="pills-photos" role="tabpanel" aria-labelledby="pills-home-tab">
-    <%= render  partial: 'home/post-item', locals: {posts: @photos} %>
+    <%= render  partial: 'home/posts-list', locals: {posts: @photos} %>
   </div>
   <div class="tab-pane fade" id="pills-albums" role="tabpanel" aria-labelledby="pills-profile-tab">
-    <%= render  partial: 'home/post-item', locals: {posts: @albums} %>
+    <%= render  partial: 'home/posts-list', locals: {posts: @albums} %>
   </div>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <img class="img-fluid rounded-start"
-                    src="https://www.seiu1000.org/sites/main/files/main-images/camera_lense_0.jpeg"
-                    alt="acbc" />
-
-                <p class="card-text">This is a wider card with supporting text below as a
-                    natural lead-in to additional content. This content is a little bit longer.
-                </p>
-                <div class="d-flex justify-content-between mt-auto align-items-center">
-                    <div class="d-flex align-items-center">
-                        <i class="fa-regular fa-heart me-1"></i>
-                        <i class="fa-solid fa-heart d-none me-2"></i>
-                        <span class="card-text m-0">233</span>
-                    </div>
-                    <p class="card-text"><small class="text-muted">4:56 12/6/2023</small></p>
-                </div>
-
-            </div>
-            <!-- <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div> -->
-        </div>
-    </div>
-</div>  
-
-<!-- end list posts -->

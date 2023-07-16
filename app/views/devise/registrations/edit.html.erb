@@ -2,31 +2,14 @@
   <span class="fw-bold fs-4">Edit profile</span>
 </header>
 
-<div class="d-flex flex-column col-md-8 col-12 mx-auto">
+<div class="d-flex flex-column col-md-8 col-12 mx-auto" data-controller="preview">
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
-    <div class="field form-group d-flex justify-content-center my-2 w-100">
+    <div class="field form-group d-flex justify-content-center my-2 w-100" data-controller="preview">
         <%= f.file_field :avatar, class: "image-frame" %>
         <%= f.label :avatar, id: "avatar-preview", class: "profile__avatar border", style: "background: url('#{url_for(current_user.avatar)}') center / cover no-repeat ; aspect-ratio: 1/1;" do %>
           <span class="bg-light text-dark mb-2 bg-opacity-75 shadow px-4 py-1 rounded">CHANGE</span>
         <% end %>
-        <%= javascript_tag do %>
-
-            const imageInput = document.getElementById('user_avatar');
-            const newImage = document.getElementById('avatar-preview');
-            console.log(imageInput)
-            imageInput.addEventListener('change', function(e) {
-              let file = e.target.files[0];
-              let reader = new FileReader();
-
-              reader.onload = function(e) {
-                newImage.style.backgroundImage =`url(${reader.result})`
-              };
-
-              reader.readAsDataURL(file);
-            });
-    
-        <%end %>
     </div>
     <p class="text-primary fw-bold">Basic infomation</p>
 
