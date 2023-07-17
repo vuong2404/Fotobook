@@ -1,19 +1,21 @@
-<h2 class="text-center text-primary m-0">Register Fotobook</h2>
 <div class="flex-fill d-flex flex-column justify-content-center align-items-center w-100 h-100 p-5">
+  <h2 class="text-center text-primary m-0">Register Fotobook</h2>
   <div class="authen-wrapper shadow-sm w-100 mx-auto p-3 mt-2 rounded-4">
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), 
      html: { class: "d-flex flex-column align-items-center p-1 m-auto" }) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
 
       <%= image_tag("loginImg.png", class: "mx-auto")%>
-      <div class="form-group w-100 mb-2">
-        <%= f.label("First name")%><br />
-        <%= f.text_field :fname, autofocus: true, autocomplete: "fname", class: "form-control"  %>
-      </div>
-
-      <div class="form-group w-100 mb-2">
-        <%= f.label("Last name")%><br />
-        <%= f.text_field :lname, autofocus: true,autocomplete: "l name", class: "form-control"  %>
+      <div class='row'>
+        <div class="form-group w-100 mb-2 col">
+          <%= f.label("First name")%><br />
+          <%= f.text_field :fname, autofocus: true, autocomplete: "fname", class: "form-control"  %>
+        </div>
+  
+        <div class="form-group w-100 mb-2 col">
+          <%= f.label("Last name")%><br />
+          <%= f.text_field :lname, autofocus: true,autocomplete: "l name", class: "form-control"  %>
+        </div>
       </div>
   
       <div class="form-group w-100 mb-2">

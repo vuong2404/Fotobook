@@ -29,12 +29,22 @@ class User < ApplicationRecord
     end
     has_many :likes
 
+    def follow? (user_id)
+      Connection.where(follower_id: self.id, following_id: user_id ).exists?
+    end
+
     private
 
     def set_default_value
-        !self.role && self.role = "user"
+        !self.role && self.role = "user"  
         !self.fname && self.fname = ""
         !self.lname && self.lname = ""
-        !self.avatar && self.avatar.attach(io: File.open('assets/images/default-avatar.png'), filename: 'default-avatar.png')
+        attach_default_avatar unless avatar.attached?
+        # !self.avatar && self.avatar.attach(io: File.open("#{Rails.root}/app/assets/images/default-avatar.png'), filename: 'default-avatar.png"))
+    end
+
+    def attach_default_avatar
+      default_avatar_path = Rails.root.join("app/assets/images/default-avatar.png")
+      self.avatar.attach(io: File.open(default_avatar_path), filename: "default-avatar.png")
     end
 end
