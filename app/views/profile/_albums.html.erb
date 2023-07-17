@@ -1,0 +1,22 @@
+<div class='row'>
+  <%= link_to "Add new album", new_album_path, class: "btn btn-success w-25 ms-auto" %>
+</div>
+<div class="row list-posts">
+  <% @albums.each do |album| %>
+    <div class="g-0 card col col-3 col-md-2 p-2 border-0">
+      <div class="h-100 bg-light border rounded shadow position-relative post-image-container d-flex align-items-center justify-content-center" data-bs-toggle="modal"  data-bs-target="#exampleModal">
+          <% album.photos.each do |photo| %>
+              <%= image_tag photo.image, class: "img-fluid rounded-start post-image" %>
+          <% end %>
+          <span class="position-absolute rounded-circle text-white z-100 profile-image-counter">
+            <b class='text-center m-0 fs-4'><%= album.photos.size %></b>
+            <p class='text-center m-0'>PHOTOS</p>
+          </span>
+
+          <%= link_to "edit", edit_album_path(album), class: "btn btn-primary position-absolute z-100", style: 'bottom: 20px;' %>
+      </div>
+      <p class="mt-2"><%= album.title%></p>
+    </div>
+  <% end %>
+</div>
+    

@@ -1,0 +1,25 @@
+<div class="contanter-fluid">
+  <div class='row'> 
+    <% follows.each do |item| %>
+       <div class = "card col-md-3 text-center border-0">
+           <div class="bg-light p-2 my-3 border border-primary rounded shadow" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              <%= link_to image_tag(item.avatar, class: "w-50 rounded-circle border border-3 border-secondary" ), profile_path(item.id)%>
+              <p class='my-2'> <%= item.fname + " " + item.lname %> </p>
+              <div class="d-flex justify-content-center">
+                <div class="mx-2">
+                    <p class="fs-3 text-primary fw-bold my-0"><%= item.photos.size %></p>
+                    <span class="fs-5 text-primary">Photos</span>
+                </div>
+                <div class="mx-2">
+                    <p class="fs-3 text-primary fw-bold my-0"><%= item.albums.size %></p>
+                    <span class="fs-5 text-primary">albums</span>
+                </div>
+              </div>
+
+              <%= render partial: "shared/follow_button", locals: {profile_user_id: item.id, is_followed: current_user && current_user.follow?(item.id)} %>
+    
+            </div>
+      </div>
+    <% end %>
+  </div>
+</div>

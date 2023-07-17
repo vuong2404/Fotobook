@@ -1,0 +1,19 @@
+<ul class="nav nav-pills mb-3 mx-auto home-nav" id="pills-tab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-photos" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Photos</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-albums" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Albums</button>
+  </li>
+</ul>
+
+<!-- list posts -->
+<div class="tab-content" id="pills-tabContent">
+  <div class="tab-pane fade show active" id="pills-photos" role="tabpanel" aria-labelledby="pills-home-tab">
+    <%= render  partial: 'home/posts-list', locals: {posts: @photos} %>
+  </div>
+  <div class="tab-pane fade" id="pills-albums" role="tabpanel" aria-labelledby="pills-profile-tab">
+    <%= render  partial: 'home/posts-list', locals: {posts: @albums} %>
+  </div>
+</div>
+

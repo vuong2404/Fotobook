@@ -1,0 +1,11 @@
+<% path = request.original_fullpath.sub!(/^./, "").split('/') %>
+<ul class="h-100 ps-5 position-fixed feeds-options d-none d-xl-block">
+	<li class="my-2">
+		<%= link_to "Feeds", root_path, class:"fs-5 #{"text-primary" if path.empty?}" %>
+	</li>
+	<li class="my-2">
+		<%= link_to "Discovery", "/discovery", class:"fs-5 #{"text-primary" if path[0] == "discovery"}" %>
+	</li>
+	<li>
+	</li>
+</ul>     
