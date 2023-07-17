@@ -7,6 +7,7 @@ class Photo < ApplicationRecord
     belongs_to :album, optional: true
 
     has_one_attached :image
+    has_many :likes, as: :likeable
     private
     
     def set_default_value
