@@ -8,6 +8,7 @@ class Photo < ApplicationRecord
     belongs_to :album, optional: true
 
     has_one_attached :image
+    has_many :likes, as: :likeable
     private
 
     def validate_image_presence

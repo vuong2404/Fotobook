@@ -27,6 +27,7 @@ class User < ApplicationRecord
     has_one_attached :avatar do |attachable|
       attachable.variant :thumb, resize_to_limit: [200, 200]
     end
+    has_many :likes
 
     def follow? (user_id)
       Connection.where(follower_id: self.id, following_id: user_id ).exists?
