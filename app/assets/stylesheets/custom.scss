@@ -2,6 +2,7 @@
     --primary: #38bdf8;
     --primary-hover: #0284c7;
     --white: #fff;
+    --dark-rgba: rgba(0,0,0,0.5);
   
     --bs-primary: var(--primary);
     --bs-primary-rgb: 56, 189, 248;
@@ -152,3 +153,68 @@ img {
 .custom-model {
   --bs-modal-width: 756px;
 }
+
+.btn-following.mini, .btn-follow.mini {
+  font-size: 12px;
+  padding: 2px 4px;
+}    
+.btn-following, .btn-follow {
+  padding: 4px 16px;
+  text-align: center;
+  transition: 0.5s;
+  background-size: 200% auto;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  font-size: 14px;
+}
+.btn-following {
+  color: white;            
+  background-image: linear-gradient(to right, #77A1D3 0%, #79CBCA  51%, #77A1D3  100%);
+}
+
+.btn-follow {
+  background: 
+        linear-gradient(#fff, #fff) padding-box,
+        linear-gradient(to right, #77A1D3 0%, #79CBCA  51%, #77A1D3  100%);
+  color: var(--primary);
+  border: 2px solid transparent;
+  border-radius: 40px;
+}
+
+.btn-following:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+
+
+.bg-dark-rgba {
+  background-color: var(--dark-rgba);
+}
+
+.fs-7 {
+  font-size: 14px;
+}
+
+.line-1 {
+  -webkit-line-clamp: 1;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-2 {
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-3 {
+  -webkit-line-clamp: 3;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+         

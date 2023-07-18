@@ -31,17 +31,16 @@
           </button>
       </li>
     </ul>
-        
         <!-- Tab panes -->
   </div>
 
 </div>
 <div class="tab-content mt-4">
   <div class="tab-pane active" id="photos" role="tabpanel" aria-labelledby="home-tab">
-    <%= render 'profile/photos' %>
+    <%= render partial: 'profile/posts-list', locals: {posts: @photos, post_type: 'photos'} %>
   </div>
   <div class="tab-pane" id="albums" role="tabpanel" aria-labelledby="profile-tab">
-    <%= render 'profile/albums' %>
+    <%= render partial: 'profile/posts-list', locals: {posts: @albums, post_type: 'albums'} %>
   </div>
   <div class="tab-pane" id="followers" role="tabpanel" aria-labelledby="messages-tab">
     <%= render partial: 'profile/follow-list', object: @followers, as: "follows" %>

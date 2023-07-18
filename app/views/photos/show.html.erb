@@ -3,11 +3,10 @@
 
 	<p class="card-text"><%= @photo.description %> </p>
 	<div class="d-flex justify-content-between mt-auto align-items-center">
-	<div class="d-flex align-items-center">
-			<i class="fa-regular fa-heart me-1"></i>
-			<i class="fa-solid fa-heart d-none me-2"></i>
-			<span class="card-text m-0">233</span>
-	</div>
+	<%= turbo_frame_tag "like_post", class: "d-flex align-items-center" do %>
+		<%= render partial: "shared/like_button", locals: {post: @photo} %>
+		<span class="card-text m-0"><%= @photo.likes.count %></span>
+	<% end %>
 		<p class="card-text"><small class="text-muted">4:56 12/6/2023</small></p>
 	</div>    
 <% end %>

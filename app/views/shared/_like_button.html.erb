@@ -1,0 +1,15 @@
+<% if current_user %>
+		<% if post.is_liked?(current_user.id) %>
+			<%= button_to dislike_post_path(post.is_a?(Photo) ? 'photos' : 'albums', post.id), method: :delete, class: 'btn p-0 me-2' do %> 
+				<i class="fa-solid fa-heart text-danger"></i>
+			<% end %>
+		<%else %>
+			<%= button_to like_post_path(post.is_a?(Photo) ? 'photos' : 'albums', post.id), method: :post, class: "btn p-0 me-2" do %> 
+				<i class="fa-regular fa-heart"></i>
+			<% end %>
+		<%end %>
+<%else %>
+  <%= link_to user_session_path, class: "btn" do %> 
+		<i class="fa-regular fa-heart me-1"></i>
+	<% end %>
+<% end %>
