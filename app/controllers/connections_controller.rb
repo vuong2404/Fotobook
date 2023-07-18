@@ -25,6 +25,5 @@ class ConnectionsController < ApplicationController
         rescue  Exception => e
             puts "Somthing went wrong!"
         end
-
     end
 end

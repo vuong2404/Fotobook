@@ -1,11 +1,11 @@
 <% if current_user %>
   <%= turbo_frame_tag "post_form" do %>
     <% if is_followed %>
-      <%= button_to "Unfollow", unfollow_user_path(profile_user_id), method: :delete, class: "btn btn-warning my-3" %> 
+      <%= button_to "Following", unfollow_user_path(profile_user_id), method: :delete, class: "btn btn-following mini" %> 
     <%else %>
-      <%= button_to "Follow", follow_user_path(profile_user_id), method: :post, class: "btn btn-outline-warning my-3" %> 
+      <%= button_to "Follow", follow_user_path(profile_user_id), method: :post, class: "btn btn-follow mini" %> 
     <%end %>
   <%end %>
 <%else %>
-  <%= link_to "Follow", user_session_path, class: "btn btn-outline-primary my-3" %> 
+  <%= link_to "Follow", user_session_path, class: "btn btn-following my-3" %> 
 <% end %>

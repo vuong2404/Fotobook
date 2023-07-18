@@ -8,12 +8,14 @@ class HomeController < ApplicationController
       @photos = Photo.where(user_id: followed_users)
       @albums = Album.where(user_id: followed_users)      
     else
-
+      
     end
     
 
   end
 
   def discovery
+    @photos = Photo.order(created_at: :desc).limit(20)
+    @albums = Album.order(created_at: :desc)   
   end
 end
