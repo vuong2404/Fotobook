@@ -1,5 +1,5 @@
 <% if current_user %>
-  <%= turbo_frame_tag "post_form" do %>
+  <%= turbo_frame_tag "follow_user#{profile_user_id}", class: "follow_user#{profile_user_id}" do %>
     <% if is_followed %>
       <%= button_to "Following", unfollow_user_path(profile_user_id), method: :delete, class: "btn btn-following mini" %> 
     <%else %>

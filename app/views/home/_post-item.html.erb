@@ -35,10 +35,8 @@
         <h5 class="card-title"><%= post.title %></h5>
         <p class="card-text"><%=post.description %></p>
         <div class="d-flex justify-content-between mt-auto align-items-center">
-          <%= turbo_frame_tag "like_post", class: "d-flex align-items-center" do %>
-            <%= render partial: "shared/like_button", locals: {post: post} %>
-            <span class="card-text m-0"><%= post.likes.count %></span>
-          <% end %>
+          
+          <%= render partial: "shared/like_button", locals: {post: post} %>
           <p class="card-text"><small class="text-muted"><%= post.created_at %></small></p>
         </div>
       </div>
