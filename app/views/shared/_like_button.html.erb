@@ -1,4 +1,5 @@
 <% if current_user %>
+	<%= turbo_frame_tag "like_post_#{post.id}", class: "d-flex align-items-center" do %>
 		<% if post.is_liked?(current_user.id) %>
 			<%= button_to dislike_post_path(post.is_a?(Photo) ? 'photos' : 'albums', post.id), method: :delete, class: 'btn p-0 me-2' do %> 
 				<i class="fa-solid fa-heart text-danger"></i>
@@ -8,8 +9,11 @@
 				<i class="fa-regular fa-heart"></i>
 			<% end %>
 		<%end %>
+		<span class="card-text m-0"><%= post.likes.count %></span>
+	<% end %>
 <%else %>
-  <%= link_to user_session_path, class: "btn" do %> 
+  <%= link_to user_session_path, class: "btn d-flex align-items-center" do %> 
 		<i class="fa-regular fa-heart me-1"></i>
+		<span class="card-text m-0"><%= post.likes.count %></span>
 	<% end %>
 <% end %>

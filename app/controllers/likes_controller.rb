@@ -5,9 +5,15 @@ class LikesController < ApplicationController
         format.json { render json: { error: "Invalid post_type" }, status: :unprocessable_entity }
       else
         post_type = (params[:post_type] == 'photos') ? Photo : Album
-        like = current_user.likes.new({likeable_id: params[:post_id], likeable_type: post_type })
-        if like.save!
-          format.html {redirect_to request.referer}
+        current_user.likes.new({likeable_id: params[:post_id], likeable_type: post_type })
+        post = post_type.find(params[:post_id])
+        if current_user.save!
+          format.turbo_stream do
+            render :turbo_stream => turbo_stream.replace(
+              "like_post_#{params[:post_id]}",
+              partial: 'shared/like_button',
+              locals: { post: post } )
+          end
         else 
           format.json { render json:  {error: like.errors, params: params} }
         end
@@ -20,16 +26,22 @@ class LikesController < ApplicationController
       unless ['photos', 'albums'].include?(params[:post_type])
         format.json { render json: { error: "Invalid post_type" }, status: :unprocessable_entity }
       else
-        post_type = (params[:post_type] == 'photos') ? "Photo" : "Album"
+        post_type = (params[:post_type] == 'photos') ? Photo : Album
+        current_user.likes.where(likeable_id: params[:post_id], likeable_type: post_type.to_s).delete_all
+        post = post_type.find(params[:post_id])
         
-        current_user.likes.where(likeable_id: params[:post_id], likeable_type: post_type).delete_all
-
         if current_user.save!
-          format.html {redirect_to request.referer}
+          format.turbo_stream do
+            render :turbo_stream => turbo_stream.replace(
+              "like_post_#{params[:post_id]}",
+              partial: 'shared/like_button',
+              locals: { post: post } )
+          end
         else 
           format.json { render json:  {error: like.errors, params: params} }
         end
       end 
     end 
   end
+
 end
