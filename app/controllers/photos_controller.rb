@@ -1,22 +1,25 @@
 class PhotosController < ApplicationController
-  skip_before_action :authenticate_user! , only: [:index]
-  def index
-    @photos = Photo.all
-  end
+  skip_before_action :authenticate_user! , only: [:show]
 
   def show
-    @photo = Photo.find(params[:id])
+    if Photo.exists?(params[:id])
+      @photo = Photo.find(params[:id])
+    else
+      render file: "#{Rails.root}/public/404.html", layout: true, status: :not_found 
+    end
   end
 
   def create
     begin
       current_user.photos.create!(photo_params)
-
-      # render :json => photo_params
       redirect_to profile_path(current_user)
     rescue Exception => e
-      puts e   
+      render file: "#{Rails.root}/public/500.html", layout: true
     end
+  end
+
+  def new 
+    @photo = Photo.new
   end
 
   def update

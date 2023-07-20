@@ -1,0 +1,34 @@
+<header class="d-flex align-items-center justify-content-between py-3 border-bottom">
+	<span class="fw-bold fs-4">Manage photos</span>
+</header>
+
+<!-- list posts -->
+<div class="row my-3">
+	<% @albums.each do |album| %>
+		<div class="col-md-4 col-12 col-lg-3 col-xl-2 p-3">
+			<div class="col-12 position-relative post-image-containe posion-absolute">
+				<%= link_to album_path(album.id), data: { turbo_frame: "remote_modal" } do %>
+					<% album.photos.each do |photo| %>
+						<% if photo.image.attached? %>
+							<%= image_tag photo.image, class: "img-fluid rounded-start post-image w-100" %>
+						<% end %>
+					<% end %>
+				<% end %>
+				<span class="position-absolute rounded-circle text-white z-100 home-image-counter">
+					<b class='text-center m-0 fs-4'><%= album.photos.size %></b>
+					<p class='text-center m-0'>PHOTOS</p>
+				</span>
+				<%= link_to edit_admin_album_path(album), class: "position-absolute top-0 text-decoration-none bg-dark p-2 text-white bg-opacity-25 rounded d-flex align-items-center cursor-pointer z-100 w-100"  do %>
+					<p class="m-0 line-1"><%= album.title %></p>
+					<i class="fa-regular fa-pen-to-square"></i>
+				<% end %>
+
+				<% if album.sharing_mode == 'private' %>
+					<span class="position-absolute bottom-0 mr-3 bg-dark-rgba rounded-circle z-100" style="right: 8px;">
+							<i class="fa-solid fa-lock text-dark p-2"></i>
+					</span>
+				<% end %>
+			</div>
+		</div>
+	<% end %>
+</div>

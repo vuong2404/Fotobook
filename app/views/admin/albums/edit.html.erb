@@ -1,4 +1,4 @@
-<%= render "shared/album_form", model: @album, title: "Edit album" do %>
+<%= render "shared/album_form", model: [:admin, @album], title: "Edit album" do %>
   <% content_for :imagesUploaded do %>
     <% @album.photos.each do |photo|%>
       <div class="image-preview-frame position-relative">

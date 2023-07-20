@@ -16,6 +16,6 @@ class HomeController < ApplicationController
 
   def discovery
     @photos = Photo.order(created_at: :desc).limit(20)
-    @albums = Album.order(created_at: :desc)   
+    @albums = Album.order(created_at: :desc).limit(20)  
   end
 end
