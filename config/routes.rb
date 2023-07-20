@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root "home#feed"
   get  "/discovery", to: "home#discovery"
-  get "/profile/:id", to: "profile#show", as: :profile
+  get "/profile/:id", to: "users#show", as: :profile
 
   post "follow/:user_id", to: "users#follow", as: :follow_user
   delete "unfollow/:user_id", to: "users#unfollow", as: :unfollow_user
@@ -14,13 +14,15 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :photos, only: [:index, :update, :edit]
     resources :albums, only: [:index, :update, :edit]
-    resources :users, only: [:index, :show]
+    resources :users, except: [:create, :new]
   end 
 
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations' 
   }
+
+  
 
 
 end

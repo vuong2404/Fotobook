@@ -37,15 +37,15 @@
 </div>
 <div class="tab-content mt-4">
   <div class="tab-pane active" id="photos" role="tabpanel" aria-labelledby="home-tab">
-    <%= render partial: 'profile/posts-list', locals: {posts: @photos, post_type: 'photos'} %>
+    <%= render partial: 'users/posts-list', locals: {posts: @photos, post_type: 'photos'} %>
   </div>
   <div class="tab-pane" id="albums" role="tabpanel" aria-labelledby="profile-tab">
-    <%= render partial: 'profile/posts-list', locals: {posts: @albums, post_type: 'albums'} %>
+    <%= render partial: 'users/posts-list', locals: {posts: @albums, post_type: 'albums'} %>
   </div>
   <div class="tab-pane" id="followers" role="tabpanel" aria-labelledby="messages-tab">
-    <%= render partial: 'profile/follow-list', object: @followers, as: "follows" %>
+    <%= render partial: 'users/follow-list', object: @followers, as: "follows" %>
   </div>
   <div class="tab-pane" id="followings" role="tabpanel" aria-labelledby="settings-tab">
-    <%= render partial: 'profile/follow-list', object: @followings, as: "follows" %>
+    <%= render partial: 'users/follow-list', object: @followings, as: "follows" %>
   </div>
 </div>
