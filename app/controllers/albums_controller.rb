@@ -1,10 +1,17 @@
 class AlbumsController < ApplicationController
-  def index
-  end
+  skip_before_action :authenticate_user!, only: [:show]
 
   def show
-    @album = Album.find(params[:id])
+    if  Album.exists?(params[:id])
+      @album = Album.find(params[:id])
+    else
+      render file: "#{Rails.root}/public/404.html", layout: true, status: :not_found 
+    end
   end
+
+  def new
+    @album = Album.new
+  end 
 
   def create
     begin
@@ -18,13 +25,11 @@ class AlbumsController < ApplicationController
           album.photos << photo
         end
       end
-    # render :json => params
     redirect_to profile_path(current_user)
     rescue Exception => e
       render json: e
     end
   end
-  
 
   def update
     begin
@@ -52,14 +57,11 @@ class AlbumsController < ApplicationController
           end
         end
       end
-    # render :json => params
-    redirect_to profile_path(current_user)
+      redirect_to profile_path(current_user)
     rescue Exception => e
-      render :json => {params: params[:photo], error: e}
+      render file: "#{Rails.root}/public/500.html", layout: true
     end
 
-
-    # render :json => params
   end
 
   def edit
@@ -69,10 +71,6 @@ class AlbumsController < ApplicationController
       render file: "#{Rails.root}/public/404.html", layout: true, status: :not_found 
     end
   end
-
-  def new
-  end
-
 
   private
     def album_params

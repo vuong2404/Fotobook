@@ -33,6 +33,19 @@ class User < ApplicationRecord
       Connection.where(follower_id: self.id, following_id: user_id ).exists?
     end
 
+    def like?(post_or_post_id, post_type = nil)
+      if post_type.nil?
+        post = post_or_post_id
+        self.likes.exists?(likeable_id: post.id, likeable_type: post.class.to_s)
+      else
+        self.likes.exists?(likeable_id: post_or_post_id, likeable_type: post_type)
+      end
+    end
+
+    def is_admin? 
+      self.role == "admin"
+    end
+
     private
 
     def set_default_value

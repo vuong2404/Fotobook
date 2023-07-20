@@ -1,0 +1,29 @@
+<header class="d-flex align-items-center justify-content-between py-3 border-bottom">
+	<span class="fw-bold fs-4">My photos</span>
+</header>
+
+<!-- list posts -->
+<div class="row my-3">
+	<div class="col-md-4 col-12 col-lg-3 col-xl-2 p-1">
+		<%= link_to album_path(post.id), data: { turbo_frame: "remote_modal" } do %>
+			<% post.photos.each do |photo| %>
+				<% if photo.image.attached? %>
+						<%= image_tag photo.image , class: "img-fluid rounded-start post-image w-100 h-100" %>
+				<% end %>
+			<% end %>
+		<% end %>
+			<div style="background: url('https://www.seiu1000.org/sites/main/files/main-images/camera_lense_0.jpeg') center / cover no-repeat ; aspect-ratio: 1/1;"
+					class="p-0 rounded d-flex flex-column justify-content-between p-2"
+					data-bs-toggle="modal" data-bs-target="#exampleModal">
+					<a href="./edit.html"
+							class="text-decoration-none bg-dark p-2 text-white bg-opacity-25 rounded d-flex align-items-center cursor-pointer">
+							<p class="m-0 truncate">fnbcbc njfdsad dhasdahshas dhshd bdhsab bnjsadjs b iss ejn
+									njn h</p>
+							<i class="fa-regular fa-pen-to-square"></i>
+					</a>
+					<span class="bg-light bg-opacity-75 rounded-circle align-self-end">
+							<i class="fa-solid fa-lock text-dark p-2"></i>
+					</span>
+			</div>
+	</div>
+</div>
