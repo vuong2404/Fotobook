@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :photos, except: [:index, :destroy]
   resources :albums, except: [:index, :destroy]
   namespace :admin do
+    root  "users#index", as: "admin"  
     resources :photos, only: [:index, :update, :edit]
     resources :albums, only: [:index, :update, :edit]
     resources :users, except: [:create, :new]
@@ -21,8 +22,5 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     registrations: 'users/registrations' 
   }
-
-  
-
 
 end

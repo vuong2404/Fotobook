@@ -1,5 +1,5 @@
 <header class="d-flex align-items-center justify-content-between py-3 border-bottom">
-	<span class="fw-bold fs-4">Manage photos</span>
+	<span class="fw-bold fs-4">Manage albums</span>
 </header>
 
 <!-- list posts -->
@@ -8,10 +8,14 @@
 		<div class="col-md-4 col-12 col-lg-3 col-xl-2 p-3">
 			<div class="col-12 position-relative post-image-containe posion-absolute">
 				<%= link_to album_path(album.id), data: { turbo_frame: "remote_modal" } do %>
-					<% album.photos.each do |photo| %>
-						<% if photo.image.attached? %>
-							<%= image_tag photo.image, class: "img-fluid rounded-start post-image w-100" %>
+					<% if album.photos.size > 0 %>
+						<% album.photos.each do |photo| %>
+							<% if photo.image.attached? %>
+								<%= image_tag photo.image, class: "img-fluid rounded-start post-image w-100" %>
+							<% end %>
 						<% end %>
+					<% else %>
+						<%= render "shared/empty_album" %>
 					<% end %>
 				<% end %>
 				<span class="position-absolute rounded-circle text-white z-100 home-image-counter">
@@ -31,4 +35,8 @@
 			</div>
 		</div>
 	<% end %>
+
+	<%= paginate @albums, theme: 'bootstrap-5',
+                   pagination_class: "pagination-sm flex-wrap justify-content-center",
+                   nav_class: "d-inline-block" %>	
 </div>

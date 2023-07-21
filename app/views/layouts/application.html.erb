@@ -17,9 +17,18 @@
       <%= render "layouts/sidebar" %>
       <div class="container-xl position-relative main-content">
         <div class="row justify-content-center position-relative h-100">
-          <div class="col-12 col-lg-10 col-xl-10 d-flex flex-column shadow rounded bg-white p-4">
+          <div class="col-12 col-lg-10 col-xl-10 d-flex flex-column shadow rounded bg-white p-4 ">
             <%= yield %>
             <%= turbo_frame_tag "remote_modal", target: "_top" %>
+            <dialog id="turbo-confirm", class= 'border-0'>
+              <form method="dialog">
+                <h3 class="message">Are you sure you want to save data?</h3>
+                <div>
+                    <button value="cancel" class="btn btn-secondary">Cancel</button>
+                    <button value="confirm" class="btn btn-primary save">Save changes</button>
+                </div>
+              </form>
+            </dialog>
           </div>
         </div>
       </div>

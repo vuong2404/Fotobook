@@ -7,7 +7,8 @@
     --bs-primary: var(--primary);
     --bs-primary-rgb: 56, 189, 248;
 
-    --sidebar-width: 200px
+    --sidebar-width: 200px;
+    --header-height: 54px;
 }
 
 html,
@@ -217,4 +218,17 @@ img {
   overflow: hidden;
 }
 
-         
+.table-responsive {
+  &::-webkit-scrollbar {
+    height:5px;
+    width: 8px;
+  }
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: linear-gradient( 95.2deg, rgba(173,252,234,1) 26.8%, rgba(192,229,246,1) 64% );;
+    border-radius: 8px;
+  }
+}
+

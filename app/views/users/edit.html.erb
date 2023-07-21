@@ -1,0 +1,35 @@
+<%= render "shared/remote_modal", title: "Edit user" do %>	
+   <%= form_with(model: [:admin, @user]) do |f| %>
+    <div class="field form-group d-flex justify-content-center my-2 w-100" data-controller="preview">
+        <%= f.file_field :avatar, class: "image-frame" %>
+        <%= f.label :avatar, id: "avatar-preview", class: "profile__avatar border", style: "background: url('#{url_for(current_user.avatar)}') center / cover no-repeat ; aspect-ratio: 1/1;" do %>
+          <span class="bg-light text-dark mb-2 bg-opacity-75 shadow px-4 py-1 rounded">CHANGE</span>
+        <% end %>
+    </div>
+    <p class="text-primary fw-bold">Basic infomation</p>
+
+    <div class="field form-group d-flex align-items-center my-2">
+      <%= f.label :email, class: 'text-nowrap col-3' %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "first name", class:"form-control mx-sm-3 w-100" %>
+    </div>
+
+    <div class="field form-group d-flex align-items-center my-2">
+      <%= f.label "First name" , class: 'text-nowrap col-3'%>
+      <%= f.text_field :fname, autofocus: true, autocomplete: "fname", class:"form-control mx-sm-3 w-100" %>
+    </div>
+
+    <div class="field form-group d-flex align-items-center my-2">
+      <%= f.label "Last name", class: 'text-nowrap col-3' %>
+      <%= f.text_field :lname, autofocus: true, autocomplete: "email", class:"form-control mx-sm-3 w-100" %>
+    </div>
+
+    <div class="field form-group d-flex align-items-center my-2">
+      <%= f.label :password, "Password", class: 'text-nowrap col-3' %>
+      <%= f.password_field :password, class:"form-control mx-sm-3 w-100" %>
+    </div>
+
+    <div class="actions w-100 text-center">
+      <%= f.submit "Save change", class: "btn btn-primary" %>
+    </div>
+  <% end %> 
+<% end %>

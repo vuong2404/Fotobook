@@ -1,6 +1,6 @@
 class Admin::AlbumsController < AdminController
 	def index
-		@albums = Album.limit(20)
+		@albums = Album.order(:created_at).page params[:page]
 		render "albums/index"
 	end
 

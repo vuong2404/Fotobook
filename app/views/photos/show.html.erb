@@ -5,7 +5,6 @@
 	<div class="d-flex justify-content-between mt-auto align-items-center">
 	<%= turbo_frame_tag "like_post", class: "d-flex align-items-center" do %>
 		<%= render partial: "shared/like_button", locals: {post: @photo} %>
-		<span class="card-text m-0"><%= @photo.likes.count %></span>
 	<% end %>
 		<p class="card-text"><small class="text-muted">4:56 12/6/2023</small></p>
 	</div>    

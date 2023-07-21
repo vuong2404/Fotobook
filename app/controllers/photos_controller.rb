@@ -12,9 +12,12 @@ class PhotosController < ApplicationController
   def create
     begin
       current_user.photos.create!(photo_params)
-      redirect_to profile_path(current_user)
+      current_user.save!
+      render :json => params
+      # redirect_to profile_path(current_user)
     rescue Exception => e
-      render file: "#{Rails.root}/public/500.html", layout: true
+      render :json => params
+      # format.html  {render file: "#{Rails.root}/public/500.html", layout: true}
     end
   end
 

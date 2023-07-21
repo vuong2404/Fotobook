@@ -7,7 +7,7 @@ class Photo < ApplicationRecord
 	belongs_to :user
 	belongs_to :album, optional: true
 
-	has_one_attached :image
+	has_one_attached :image, dependent: :destroy
 	has_many :likes, as: :likeable
 	
 	def is_liked?(user_id)

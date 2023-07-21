@@ -10,7 +10,7 @@
             <%= link_to album_path(post.id), data: { turbo_frame: "remote_modal" } do %>
               <% post.photos.each do |photo| %>
                 <% if photo.image.attached? %>
-                    <%= image_tag photo.image , class: "img-fluid rounded-start post-image w-100 h-100" %>
+                  <%= image_tag photo.image , class: "img-fluid rounded-start post-image w-100 h-100" %>
                 <% end %>
               <% end %>
             <% end %>

@@ -1,6 +1,6 @@
-class PhotosController < ApplicationController
+class Admin::PhotosController < AdminController
   def index
-		@photos = Album.limit(20)
+		@photos = Photo.order(:created_at).page params[:page]
 		render "photos/index"
 	end
 
@@ -20,7 +20,7 @@ class PhotosController < ApplicationController
 
   def edit
     if Photo.exists?(params[:id].to_i)
-      @photo = current_user.photos.find(params[:id])
+      @photo = Photo.find(params[:id])
     else 
       render file: "#{Rails.root}/public/404.html", layout: true, status: :not_found 
     end
