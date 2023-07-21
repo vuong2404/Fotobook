@@ -88,3 +88,6 @@ end
 
 gem "image_processing", ">= 1.2"
 gem "font-awesome-sass", "~> 6.4.0"
+gem "mini_magick"
+gem 'kaminari'
+gem 'bootstrap5-kaminari-views'
