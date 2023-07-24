@@ -1,22 +1,18 @@
-
-<div class="bg-primary py-1" id="header">
-    <header class="header container-xl py-2 d-flex align-items-center">
-        <%= link_to "Fotobook", root_path, class: "text-white h2 m-0 text-decoration-none" %>
-        
-        <div class="input-group w-auto position-relative px-2">
-            <input type="text" class="form-control" placeholder="Search for photos/albums..." aria-label="Recipient's username">
-            <span class="input-icon-right cursor-pointer"><i class="fa-solid fa-magnifying-glass text-dark"></i></span>
-        </div>
-        <% if current_user %>
-            <%= link_to(profile_path(current_user), class: 'user-info d-flex ms-auto align-items-center text-white text-decoration-none') do %>
-                <%= image_tag(current_user.avatar, class: "user-info__avatar rounded-circle border") if current_user.avatar.attached? %>
-
-                <span class="ms-2"><%= current_user.fname + " " + current_user.lname %></span>
-            <% end %>
-            <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "btn btn-outline-success text-white ms-4" %>
-        <% else %>
-            <%= link_to('Login', new_user_session_path, class: "ms-auto btn btn-outline-success text-white ms-4") %>
-        <% end %>      
-
-    </header>
+<div class="bg-primary py-1 d-flex m-auto px-3" id="header">
+  <header class="header container-fluid py-2 d-flex align-items-center mx-2">
+    <%= link_to "Fotobook", root_path, class: "text-white h2 m-0 text-decoration-none" %>
+    <div class="input-group w-auto position-relative px-2">
+        <input type="text" class="form-control" placeholder="Search for photos/albums..." aria-label="Recipient's username">
+        <span class="input-icon-right cursor-pointer"><i class="fa-solid fa-magnifying-glass text-dark"></i></span>
+    </div>
+    <% if current_user %>
+        <%= link_to(profile_path(current_user), class: 'user-info d-flex ms-auto align-items-center text-white text-decoration-none') do %>
+            <%= image_tag(current_user.avatar, class: "user-info__avatar rounded-circle border") if current_user.avatar.attached? %>
+            <span class="ms-2"><%= current_user.fname + " " + current_user.lname %></span>
+        <% end %>
+        <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "btn btn-outline-success text-white ms-4" %>
+    <% else %>
+        <%= link_to('Login', new_user_session_path, class: "ms-auto btn btn-outline-success text-white ms-4") %>
+    <% end %>      
+  </header>
 </div>

@@ -1,0 +1,21 @@
+@media (max-width: 992px) {
+  .admin-sidebar-container {
+    left: calc(0px - var(--admin-sidebar-width));
+  }
+
+  .admin-main-content {
+    margin-left: 0;
+  }
+}
+
+@media (min-width: 993px) {
+  .admin-sidebar-container {
+    left: 0;
+  }
+
+  .admin-main-content {
+    margin-left: var(--admin-sidebar-width)
+  }
+}
+
+
