@@ -1,6 +1,7 @@
 class Photo < ApplicationRecord
     # before_create :set_default_value
-  
+	before_destroy :delete_image_from_cloudinary
+
 	validates :sharing_mode , inclusion: {in: %w(private public), message: "Sharing mode must be private or public" }
 	validates :description, presence: true
 	validates :title, presence: true
@@ -20,4 +21,11 @@ class Photo < ApplicationRecord
 				errors.add(:image, "must be present")
 		end
 	end
+
+	def delete_image_from_cloudinary
+    if image.attached?
+			image.purge
+    end
+  end
+
 end
