@@ -94,3 +94,8 @@ gem 'bootstrap5-kaminari-views'
 
 gem "cloudinary"
 gem 'figaro'
+gem "dockerfile-rails", ">= 1.5", :group => :development
+
+gem "pg", "~> 1.5"
+
+gem "redis", "~> 5.0"
