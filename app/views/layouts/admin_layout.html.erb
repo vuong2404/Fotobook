@@ -14,8 +14,8 @@
     <div class='wrapper' data-controller = "sidebar">
       <%= render 'layouts/admin_navbar' %>  
       <div class="container-fluid p-0">
-        <div class ="d-flex flex-row me-2 align-items-start">
-          <div class="admin-main-content w-100 bg-white shadow p-4 mt-3 d-flex flex-column fill-screen rounded position-relative">
+        <div class ="d-flex flex-row align-items-start">
+          <div class="admin-main-content w-100 me-3  d-flex flex-column position-relative">
             <%= yield %>
           </div>
           <%= turbo_frame_tag "remote_modal", target: "_top" %>

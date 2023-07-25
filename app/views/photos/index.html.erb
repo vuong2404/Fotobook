@@ -1,10 +1,10 @@
-<div class="table-responsive px-2">
-	<header class="d-flex align-items-center justify-content-between py-3 border-bottom">
+<div class="bg-light  table-responsive shadow-lg mt-3 rounded p-4">
+	<header class="d-flex align-items-center justify-content-between border-bottom">
 		<span class="fw-bold fs-4">Manage photos</span>
 	</header>
 
 		<!-- list posts -->
-	<div class="row my-3">
+	<div class="row my-3 w-100">
 		<% @photos.each do |photo| %>
 			<div class="col-md-4 col-12 col-lg-3 col-xl-2 p-3">
 				<div class="col-12 position-relative post-image-containe posion-absolute">
@@ -32,4 +32,4 @@
 </div>
 <%= paginate @photos, theme: 'bootstrap-5',
                   pagination_class: "pagination-sm flex-wrap justify-content-center mx-auto my-2",
-                  nav_class: "d-flex w-100 position-absolute bottom-0 left-0 bg-white shadow rounded z-100" %>	
+                  nav_class: "d-flex w-100 position-sticky bottom-0 left-0 bg-white shadow rounded z-100" %>	

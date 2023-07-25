@@ -1,12 +1,12 @@
-<div class="table-responsive px-2">
+<div class="bg-light  table-responsive shadow-lg mt-3 rounded p-4 ">
 	<header class="d-flex align-items-center justify-content-between border-bottom">
 		<span class="fw-bold fs-4">Manage albums</span>
 	</header>
 
 	<!-- list posts -->
-	<div class="row my-3 w-100">
+	<div class="row my-3">
 		<% @albums.each do |album| %>
-			<div class="col-md-4 col-12 col-lg-3 col-xl-2 p-3">
+			<div class="col-md-4 col-12 col-lg-3 col-xl-2">
 				<div class="col-12 position-relative post-image-container posion-absolute">
 					<%= link_to album_path(album.id), data: { turbo_frame: "remote_modal" } do %>
 						<% if album.photos.size > 0 %>
@@ -41,4 +41,4 @@
 </div>
 <%= paginate @albums, theme: 'bootstrap-5',
                   pagination_class: "pagination-sm flex-wrap justify-content-center mx-auto my-2",
-                  nav_class: "d-flex w-100 position-absolute bottom-0 left-0 bg-white shadow rounded z-100 shadow border-top" %>	
+                  nav_class: "d-flex w-100 left-0 bg-white shadow rounded z-100 shadow border-top position-sticky bottom-0" %>	

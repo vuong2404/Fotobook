@@ -21,6 +21,7 @@ class Admin::PhotosController < AdminController
   def edit
     if Photo.exists?(params[:id].to_i)
       @photo = Photo.find(params[:id])
+      # render :json => @photo.image.attachment.url
     else 
       render file: "#{Rails.root}/public/404.html", layout: true, status: :not_found 
     end

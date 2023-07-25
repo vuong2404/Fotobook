@@ -91,3 +91,6 @@ gem "font-awesome-sass", "~> 6.4.0"
 gem "mini_magick"
 gem 'kaminari'
 gem 'bootstrap5-kaminari-views'
+
+gem "cloudinary"
+gem 'figaro'
