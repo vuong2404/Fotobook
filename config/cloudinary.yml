@@ -1,13 +1,13 @@
 development:
   cloud_name: dfriscetu
-  api_key: "996288143234992"
+  api_key: 996288143234992
   api_secret: a33lFQAyWqDrKPN3ajTFcAP-rMw
   enhance_image_tag: true
   static_file_support: false
 
 production:
   cloud_name: dfriscetu
-  api_key: "996288143234992"
+  api_key: 996288143234992
   api_secret: a33lFQAyWqDrKPN3ajTFcAP-rMw
   enhance_image_tag: true
   static_file_support: false
