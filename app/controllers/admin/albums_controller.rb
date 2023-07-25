@@ -9,7 +9,7 @@ class Admin::AlbumsController < AdminController
       ActiveRecord::Base.transaction do
         params[:delete] ? Album.find(params[:id].to_i).destroy : update_album(params)
       end
-    redirect_to admin_albums_path(current_user)
+      redirect_to admin_albums_path(current_user)
     rescue Exception => e
       # render file: "#{Rails.root}/public/500.html", layout: false
       render :json => {error: e, params: params}
@@ -46,10 +46,12 @@ class Admin::AlbumsController < AdminController
       # create new photos
       params[:images].each do |image|
         next if image == ""
-        photo = Photo.create(album_params)
+        photo = Photo.new(album_params)
         photo.image.attach(image)
+        photo.user_id = album.user_id
         album.photos << photo
       end
+
       
       # delete photos
       params[:photos_delete] && params[:photos_delete].each do |id|

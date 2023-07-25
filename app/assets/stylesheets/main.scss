@@ -1,5 +1,4 @@
 #header {
-    background-color: var(--primary); 
     color: var(--white);
     position: -webkit-sticky;
     position: sticky;
@@ -171,5 +170,5 @@
 }
 
 .fill-screen  {
-    height: calc(100vh - var(--header-height) - 32px)
+    height: calc(100vh - var(--header-height))
 }

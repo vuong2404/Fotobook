@@ -1,37 +1,38 @@
-<div class="d-flex flex-column fill-screen border rounded position-relative">
-  <div class="table-responsive px-2">
-    <table class="table table-hover flex-fill">
-      <thead class="position-sticky top-0 bg-white rounded" >
+ <div class="bg-light  table-responsive shadow-lg mt  -3 px-2 rounded ">
+  <header class="d-flex align-items-center justify-content-between border-bottom p-2 my-2">
+    <span class="fw-bold fs-4">Manage users</span>
+  </header>
+  <table class="table table-hover flex-fill mb-4">
+    <thead class="position-sticky top-0 bg-white rounded" >
+      <tr>
+        <th scope="col">ID</th>
+        <th scope='col'></th>
+        <th scope="col">Firstname</th>
+        <th scope="col">Lastname</th>
+        <th scope="col">Email</th>
+        <th scope="col">Last login</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
         <tr>
-          <th scope="col">ID</th>
-          <th scope='col'></th>
-          <th scope="col">Firstname</th>
-          <th scope="col">Lastname</th>
-          <th scope="col">Email</th>
-          <th scope="col">Last login</th>
-          <th scope="col">Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @users.each do |user| %>
-          <tr>
-            <th scope="row"><%=user.id %></th>
-            <td><%= image_tag user.avatar,class:'rounded-circle border', style: 'width: 30px; height: 30px;'%> </td> 
-            <td><%=user.fname %></td>
-            <td><%=user.lname %></td>
-            <td><%=user.email %></td>
-            <td><%=user.created_at %></td>
-            <td class="d-flex">
-                <%= link_to "Edit", edit_admin_user_path(user.id), class: "btn btn-success me-2",  data: { turbo_frame: "remote_modal" } %>
-                <%= button_to "Delete", admin_user_path(user.id),:method => :delete, form: { data: { turbo_confirm: "Are you sure you want to delete this user?" } }, class: "btn btn-danger" %>  
-            </td>
-          </tr> 
-        <% end %>
-      </tbody>
-  
-    </table>
-  </div>
+          <th scope="row"><%=user.id %></th>
+          <td><%= image_tag user.avatar,class:'rounded-circle border', style: 'width: 30px; height: 30px;'%> </td> 
+          <td><%=user.fname %></td>
+          <td><%=user.lname %></td>
+          <td><%=user.email %></td>
+          <td><%=user.created_at %></td>
+          <td class="d-flex">
+              <%= link_to "Edit", edit_admin_user_path(user.id), class: "btn btn-success me-2",  data: { turbo_frame: "remote_modal" } %>
+              <%= button_to "Delete", admin_user_path(user.id),:method => :delete, form: { data: { turbo_confirm: "Are you sure you want to delete this user?" } }, class: "btn btn-danger" %>  
+          </td>
+        </tr> 
+      <% end %>
+    </tbody>
+
+  </table>
+</div>
   <%= paginate @users, theme: 'bootstrap-5',
                   pagination_class: "pagination-sm flex-wrap justify-content-center mx-auto my-2",
-                  nav_class: "d-flex w-100 position-absolute bottom-0 left-0 bg-white shadow rounded" %>	
-</div>
+                  nav_class: "d-flex w-100 position-sticky bottom-0 left-0 bg-white shadow rounded" %>	

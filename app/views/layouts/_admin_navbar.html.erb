@@ -1,0 +1,49 @@
+<div class="bg-primary py-1 d-flex m-auto px-3" id="header">
+  <header class="header w-100 px-3 py-2 d-flex align-items-center">
+    <button  class='sidebar-toggle-btn btn text-white border-0 p-0 pe-3 d-flex align-items-center'>
+      <i class="fa-solid fa-bars fs-4"></i>
+    </button>
+    <%= link_to "Fotobook Admin", root_path, class: "text-white h2 m-0 text-decoration-none" %>
+    <div class="input-group w-auto position-relative px-2">
+      <input type="text" class="form-control" placeholder="Search for photos/albums..." aria-label="Recipient's username">
+      <span class="input-icon-right cursor-pointer"><i class="fa-solid fa-magnifying-glass text-dark"></i></span>
+    </div>
+
+    <%= link_to(profile_path(current_user), class: 'user-info d-flex ms-auto align-items-center text-white text-decoration-none') do %>
+      <%= image_tag(current_user.avatar, class: "user-info__avatar rounded-circle border") if current_user.avatar.attached? %>
+      <span class="ms-2"><%= current_user.fname + " " + current_user.lname %></span>
+    <% end %>
+    <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "btn btn-outline-success text-white ms-4" %>
+      
+  </header>
+</div>
+
+<% path = URI.parse(request.original_url).path.split('/').reject(&:empty?)  %>
+<div class='admin-sidebar-container'>
+  <ul class="bg-light my-0 h-100 me-3  text-decoration-none py-3 shadow px-3"> 
+    <h5 class="welcome-text px-2 text-center mt-3 fw-bold">Welcome back, </h5>
+    <h5 class="welcome-text px-2 text-center mb-3 fw-bold"><%= current_user.fname + " " + current_user.lname %>!</h5>
+    <li class="<%= "d-flex align-items-center rounded #{"active" if path.include?("users")}" %>" >
+      <%= link_to admin_users_path, class:"w-100 h-100 px-3 py-2" do %>
+        <i class="fa-regular fa-circle-user fs-5 me-2"></i>
+        <span>Manage users</span>
+      <% end %>
+    </li>
+    
+    <li class="<%= "d-flex align-items-center rounded #{"active" if path.include?("albums")}" %>" >
+      <%= link_to admin_albums_path, class:"w-100 h-100 px-3 py-2" do %>
+        <i class="fa-regular fa-image me-2  fs-5"></i>
+        <span>Manage albums</span>
+      <% end %>
+    </li>
+    
+    <li class="<%= "d-flex align-items-center rounded #{"active" if path.include?("photos")}" %>" >
+      <%= link_to admin_photos_path, class:"w-100 h-100 px-3 py-2" do %>
+        <i class="fa-regular fa-images me-2 fs-5"></i>
+        <span>Manage photos</span>
+      <% end %>
+    </li>
+  </ul>     
+
+</div>
+

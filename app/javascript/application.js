@@ -18,3 +18,4 @@ Turbo.setConfirmMethod((message, element) => {
     }, { once: true })
   })
 })
+

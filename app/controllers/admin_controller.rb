@@ -1,5 +1,6 @@
 class AdminController < ApplicationController
 	before_action :authenticate_admin
+  layout "admin_layout"
   private
   def authenticate_admin
     unless current_user && current_user.admin? 

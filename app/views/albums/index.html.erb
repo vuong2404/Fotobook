@@ -1,42 +1,44 @@
-<header class="d-flex align-items-center justify-content-between py-3 border-bottom">
-	<span class="fw-bold fs-4">Manage albums</span>
-</header>
+<div class="bg-light  table-responsive shadow-lg mt-3 rounded p-4 ">
+	<header class="d-flex align-items-center justify-content-between border-bottom">
+		<span class="fw-bold fs-4">Manage albums</span>
+	</header>
 
-<!-- list posts -->
-<div class="row my-3">
-	<% @albums.each do |album| %>
-		<div class="col-md-4 col-12 col-lg-3 col-xl-2 p-3">
-			<div class="col-12 position-relative post-image-containe posion-absolute">
-				<%= link_to album_path(album.id), data: { turbo_frame: "remote_modal" } do %>
-					<% if album.photos.size > 0 %>
-						<% album.photos.each do |photo| %>
-							<% if photo.image.attached? %>
-								<%= image_tag photo.image, class: "img-fluid rounded-start post-image w-100" %>
+	<!-- list posts -->
+	<div class="row my-3">
+		<% @albums.each do |album| %>
+			<div class="col-md-4 col-12 col-lg-3 col-xl-2">
+				<div class="col-12 position-relative post-image-container posion-absolute">
+					<%= link_to album_path(album.id), data: { turbo_frame: "remote_modal" } do %>
+						<% if album.photos.size > 0 %>
+							<% album.photos.each do |photo| %>
+								<% if photo.image.attached? %>
+									<%= image_tag photo.image, class: "img-fluid rounded-start post-image w-100" %>
+								<% end %>
 							<% end %>
+						<% else %>
+							<%= render "shared/empty_album" %>
 						<% end %>
-					<% else %>
-						<%= render "shared/empty_album" %>
 					<% end %>
-				<% end %>
-				<span class="position-absolute rounded-circle text-white z-100 home-image-counter">
-					<b class='text-center m-0 fs-4'><%= album.photos.size %></b>
-					<p class='text-center m-0'>PHOTOS</p>
-				</span>
-				<%= link_to edit_admin_album_path(album), class: "position-absolute top-0 text-decoration-none bg-dark p-2 text-white bg-opacity-25 rounded d-flex align-items-center cursor-pointer z-100 w-100"  do %>
-					<p class="m-0 line-1"><%= album.title %></p>
-					<i class="fa-regular fa-pen-to-square"></i>
-				<% end %>
-
-				<% if album.sharing_mode == 'private' %>
-					<span class="position-absolute bottom-0 mr-3 bg-dark-rgba rounded-circle z-100" style="right: 8px;">
-							<i class="fa-solid fa-lock text-dark p-2"></i>
+					<span class="position-absolute rounded-circle text-white z-100 home-image-counter">
+						<b class='text-center m-0 fs-4'><%= album.photos.size %></b>
+						<p class='text-center m-0'>PHOTOS</p>
 					</span>
-				<% end %>
-			</div>
-		</div>
-	<% end %>
+					<%= link_to edit_admin_album_path(album), class: "position-absolute top-0 text-decoration-none bg-dark p-2 text-white bg-opacity-25 rounded d-flex align-items-center cursor-pointer z-100 w-100"  do %>
+						<p class="m-0 line-1"><%= album.title %></p>
+						<i class="fa-regular fa-pen-to-square"></i>
+					<% end %>
 
-	<%= paginate @albums, theme: 'bootstrap-5',
-                   pagination_class: "pagination-sm flex-wrap justify-content-center",
-                   nav_class: "d-inline-block" %>	
+					<% if album.sharing_mode == 'private' %>
+						<span class="position-absolute bottom-0 mr-3 bg-dark-rgba rounded-circle z-100" style="right: 8px;">
+								<i class="fa-solid fa-lock text-dark p-2"></i>
+						</span>
+					<% end %>
+				</div>
+			</div>
+		<% end %>
+
+	</div>
 </div>
+<%= paginate @albums, theme: 'bootstrap-5',
+                  pagination_class: "pagination-sm flex-wrap justify-content-center mx-auto my-2",
+                  nav_class: "d-flex w-100 left-0 bg-white shadow rounded z-100 shadow border-top position-sticky bottom-0" %>	

@@ -1,32 +1,35 @@
-<header class="d-flex align-items-center justify-content-between py-3 border-bottom">
-	<span class="fw-bold fs-4">Manage photos</span>
-</header>
+<div class="bg-light  table-responsive shadow-lg mt-3 rounded p-4">
+	<header class="d-flex align-items-center justify-content-between border-bottom">
+		<span class="fw-bold fs-4">Manage photos</span>
+	</header>
 
-<!-- list posts -->
-<div class="row my-3">
-	<% @photos.each do |photo| %>
-		<div class="col-md-4 col-12 col-lg-3 col-xl-2 p-3">
-			<div class="col-12 position-relative post-image-containe posion-absolute">
-				<%= link_to photo_path(photo.id), data: { turbo_frame: "remote_modal" } do %>
-					<% if photo.image.attached? %>
-						<%= image_tag photo.image, class: "img-fluid rounded-start post-image w-100" %>	
-					<% else %>
-						<%= render "shared/empty_album" %>
+		<!-- list posts -->
+	<div class="row my-3 w-100">
+		<% @photos.each do |photo| %>
+			<div class="col-md-4 col-12 col-lg-3 col-xl-2 p-3">
+				<div class="col-12 position-relative post-image-containe posion-absolute">
+					<%= link_to photo_path(photo.id), data: { turbo_frame: "remote_modal" } do %>
+						<% if photo.image.attached? %>
+							<%= image_tag photo.image, class: "img-fluid rounded-start post-image w-100" %>	
+						<% else %>
+							<%= render "shared/empty_album" %>
+						<% end %>
 					<% end %>
-				<% end %>
-				<%= link_to edit_admin_photo_path(photo), class: "position-absolute top-0 text-decoration-none bg-dark p-2 text-white bg-opacity-25 rounded d-flex align-items-center cursor-pointer z-100 w-100"  do %>
-					<p class="m-0 line-1"><%= photo.title %></p>
-					<i class="fa-regular fa-pen-to-square"></i>
-				<% end %>
+					<%= link_to edit_admin_photo_path(photo), class: "position-absolute top-0 text-decoration-none bg-dark p-2 text-white bg-opacity-25 rounded d-flex align-items-center cursor-pointer z-100 w-100"  do %>
+						<p class="m-0 line-1"><%= photo.title %></p>
+						<i class="fa-regular fa-pen-to-square"></i>
+					<% end %>
 
-				<% if photo.sharing_mode == 'private' %>
-					<span class="position-absolute bottom-0 mr-3 bg-dark-rgba rounded-circle z-100" style="right: 8px;">
-							<i class="fa-solid fa-lock text-dark p-2"></i>
-					</span>
-				<% end %>
+					<% if photo.sharing_mode == 'private' %>
+						<span class="position-absolute bottom-0 mr-3 bg-dark-rgba rounded-circle z-100" style="right: 8px;">
+								<i class="fa-solid fa-lock text-dark p-2"></i>
+						</span>
+					<% end %>
+				</div>
 			</div>
-		</div>
-	<% end %>
-
-	<%= render "shared/pagination", resource: @photos %>
+		<% end %>
+	</div>
 </div>
+<%= paginate @photos, theme: 'bootstrap-5',
+                  pagination_class: "pagination-sm flex-wrap justify-content-center mx-auto my-2",
+                  nav_class: "d-flex w-100 position-sticky bottom-0 left-0 bg-white shadow rounded z-100" %>	
