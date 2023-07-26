@@ -6,7 +6,7 @@
         <%= render partial: "users/search_item", locals: {user: user} %>
       <% end %>
 
-      <%= link_to "More ...", search_photos_path(key: @key), class: "btn btn-light border mt-3 fw-bold w-100" %>
+      <%= link_to "More ...", search_photos_path(key: @key), class: "btn btn-outline-primary border mt-3 fw-bold w-100" %>
     </ul>
   <% end %>
 
@@ -14,7 +14,7 @@
     <div class="shadow p-3 rounded shadow border my-3">
       <h4 class="fs-3 my-2">Photo</h4>
       <%= render  partial: 'home/posts-list', locals: {posts: @photos} %>
-      <%= link_to "More ...", search_photos_path(key: @key), class: "btn btn-light border mt-3 fw-bold w-100" %>
+      <%= link_to "More ...", search_photos_path(key: @key), class: "btn btn-outline-primary border mt-3 fw-bold w-100" %>
     </div>
   <% end %>
 
@@ -22,7 +22,7 @@
     <div class="shadow p-3 rounded shadow border">
       <h4 class="fs-3 my-2">Album</h4>
       <%= render  partial: 'home/posts-list', locals: {posts: @albums} %>
-      <%= link_to "More ...", search_photos_path(key: @key), class: "btn btn-light border mt-3 fw-bold w-100" %>
+      <%= link_to "More ...", search_photos_path(key: @key), class: "btn btn-outline-primary border mt-3 fw-bold w-100" %>
     </div>
   <% end %>
 
