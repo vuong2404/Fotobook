@@ -4,10 +4,14 @@
       <i class="fa-solid fa-bars fs-4"></i>
     </button>
     <%= link_to "Fotobook Admin", root_path, class: "text-white h2 m-0 text-decoration-none" %>
-    <div class="input-group w-auto position-relative px-2">
-      <input type="text" class="form-control" placeholder="Search for photos/albums..." aria-label="Recipient's username">
-      <span class="input-icon-right cursor-pointer"><i class="fa-solid fa-magnifying-glass text-dark"></i></span>
-    </div>
+    <%= form_tag search_path, method: :get, class: "form-group" do %>
+      <div class="input-group w-0 position-relative px-2 d-none d-md-flex">
+        <%= text_field_tag :key, "" , class: "form-control w-auto rounded", placeholder: "Search for photos/albums..." %>
+        <span class="input-icon-right cursor-pointer rounded">
+          <i class="fa-solid fa-magnifying-glass text-dark"></i>
+        </span>
+      </div>
+    <% end %>
 
     <%= link_to(profile_path(current_user), class: 'user-info d-flex ms-auto align-items-center text-white text-decoration-none') do %>
       <%= image_tag(current_user.avatar, class: "user-info__avatar rounded-circle border") if current_user.avatar.attached? %>
