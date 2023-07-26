@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FinalApp</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <div class='wrapper' data-controller = "sidebar">
+      <%= render 'layouts/header' %>  
+      <div class="container-fluid p-0 ">
+        <div class ="row w-100 align-items-start  bg-light">
+          <div class=" col-12 col-md-3  bg-light m-0 bg-white shadow fill-screen position-sticky bottom-0">
+            <%= render "layouts/search/search_sidebar" %>
+          </div>
+          <div class="col-12 col-md-9 p-0 fill-screen overflow-auto">
+            <%= yield %>
+          </div>
+        </div>
+        <%= turbo_frame_tag "remote_modal", target: "_top" %>
+      </div>
+    </div>
+  </body>
+
+  
+</html>

@@ -1,12 +1,12 @@
 :root {
-    --primary: #38bdf8;
-    --primary-hover: #0284c7;
+    --primary: rgb(79 70 229);;
+    --primary-hover: rgb(67 56 202);
     --white: #fff;
     --dark-rgba: rgba(0,0,0,0.5);
-    --primary-rgba: rgba( 56, 189, 248, 0.5);
+    --primary-rgba: rgba(79 70 229, 0.5);
     --bs-primary: var(--primary);
-    --bs-primary-rgb: 56, 189, 248;
-
+    --bs-primary-rgb: 79, 70, 229;
+    --primary-gradient: linear-gradient(to right, #4776E6 0%, #8E54E9  51%, #4776E6  100%);
     --sidebar-width: 200px;
     --admin-sidebar-width: 300px;
     --header-height: 54px;
@@ -33,7 +33,7 @@ img {
     border-radius: 10px;
   }
   &::-webkit-scrollbar-thumb {
-    background: linear-gradient( 95.2deg, rgba(173,252,234,1) 26.8%, rgba(192,229,246,1) 74% );;
+    background: var(--primary-gradient);
     border-radius: 8px;
   }
 }
@@ -91,6 +91,9 @@ img {
   text-overflow: ellipsis;
 }
 
+.bg-light-hover:hover {
+  background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity));
+}
 
 
 .input-group .input-icon-right {
@@ -186,13 +189,12 @@ img {
 }
 .btn-following {
   color: white;            
-  background-image: linear-gradient(to right, #77A1D3 0%, #79CBCA  51%, #77A1D3  100%);
+  background-image: var(--primary-gradient) ;
 }
-
 .btn-follow {
   background: 
         linear-gradient(#fff, #fff) padding-box,
-        linear-gradient(to right, #77A1D3 0%, #79CBCA  51%, #77A1D3  100%);
+        var(--primary-gradient) ;
   color: var(--primary);
   border: 2px solid transparent;
   border-radius: 40px;
@@ -203,7 +205,7 @@ img {
   color: #fff;
   text-decoration: none;
 }
-
+     
 
 .bg-dark-rgba {
   background-color: var(--dark-rgba);

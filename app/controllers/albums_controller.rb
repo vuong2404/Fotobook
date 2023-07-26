@@ -72,6 +72,17 @@ class AlbumsController < ApplicationController
     end
   end
 
+  def search
+    if params[:key] && params[:key] != ""
+      key = Album.sanitize_sql_like(params[:key])
+      @results = Album.where("title LIKE ? OR description LIKE ?", "%#{key}%", "%#{key}%").limit(20)
+      render "albums/search_result",layout: 'search/search_layout'
+
+    else
+      render :html => "Must have a key to search!"
+    end
+  end
+
   private
     def album_params
       params.required(:album).permit(:title, :description, :sharing_mode)

@@ -1,0 +1,30 @@
+<div class=" col-10 mx-auto px-3 bg-light my-5 rounded"> 
+  <% if @users.size > 0 %>
+    <ul class="shadow p-3 rounded shadow border">
+      <h4 class="fs-3 my-2">People</h4>
+      <% @users.each do |user| %>
+        <%= render partial: "users/search_item", locals: {user: user} %>
+      <% end %>
+
+      <%= link_to "More ...", search_photos_path(key: @key), class: "btn btn-light border mt-3 fw-bold w-100" %>
+    </ul>
+  <% end %>
+
+  <% if @photos.size > 0 %>
+    <div class="shadow p-3 rounded shadow border my-3">
+      <h4 class="fs-3 my-2">Photo</h4>
+      <%= render  partial: 'home/posts-list', locals: {posts: @photos} %>
+      <%= link_to "More ...", search_photos_path(key: @key), class: "btn btn-light border mt-3 fw-bold w-100" %>
+    </div>
+  <% end %>
+
+  <% if @albums.size > 0 %>
+    <div class="shadow p-3 rounded shadow border">
+      <h4 class="fs-3 my-2">Album</h4>
+      <%= render  partial: 'home/posts-list', locals: {posts: @albums} %>
+      <%= link_to "More ...", search_photos_path(key: @key), class: "btn btn-light border mt-3 fw-bold w-100" %>
+    </div>
+  <% end %>
+
+
+</div>
