@@ -9,7 +9,10 @@
         data: {turbo: "false"} do |f| %>
           <%= f.submit "Login", type: "image", src: url_for("https://yt3.googleusercontent.com/ytc/AOPolaQ57PDKphyLQYYZyKoHCtg22kw8zzrRu1j6pU_R9w=s900-c-k-c0x00ffffff-no-rj"), style: "width: 50px;" %>
       <% end %>  
-  <% end %>
+   <% end %>
+  
+  <%= button_to "Sign in with Facebook", user_facebook_omniauth_authorize_path, data: { turbo: false } %>
+
 <% end %>
 
   <div class="authen-wrapper shadow-sm w-100 mx-auto p-3 mt-2 rounded-4">

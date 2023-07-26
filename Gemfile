@@ -102,4 +102,5 @@ gem "redis", "~> 5.0"
 gem 'dotenv-rails'
 gem "omniauth"
 gem "omniauth-google-oauth2"
+gem 'omniauth-facebook'
 gem "omniauth-rails_csrf_protection"
