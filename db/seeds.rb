@@ -9,7 +9,7 @@ def generate_random_image
 
 end
 
-10.times do
+50.times do
   User.create(
     fname: Faker::Name.first_name,
     lname: Faker::Name.last_name,
@@ -18,15 +18,15 @@ end
   )
 end	
 
-# # Seed 20 albums
-# 20.times do
-#   Album.create(
-#     description: Faker::Lorem.sentence(word_count: 30, supplemental: true, random_words_to_add:2),
-#     title: Faker::Lorem.sentence,
-#     user_id: User.pluck(:id).sample,
-#     sharing_mode:   ['public', 'private'].sample
-#   )
-# end
+# Seed 20 albums
+30.times do
+  Album.create(
+    description: Faker::Lorem.sentence(word_count: 30, supplemental: true, random_words_to_add:2),
+    title: Faker::Lorem.sentence,
+    user_id: User.pluck(:id).sample,
+    sharing_mode:   ['public', 'private'].sample
+  )
+end
   
 # Seed 50 photos
 50.times do

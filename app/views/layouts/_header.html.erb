@@ -1,11 +1,15 @@
 <div class="bg-primary py-1 d-flex m-auto px-0 px-md-3" id="header">
-  <header class="header container-fluid py-2 d-flex align-items-center mx-0 mx-md-2">
+  <header class="header container-fluid py-2 d-flex align-items-center mx-0 mx-md-2 px-0">
     <%= link_to "Fotobook", root_path, class: "text-white h2 m-0 text-decoration-none" %>
-    <div class="input-group w-0 position-relative px-2  d-none d-md-block">
-        <input type="text"  class="form-control" placeholder="Search for photos/albums..." aria-label="Recipient's username">
-        <span class="input-icon-right cursor-pointer"><i class="fa-solid fa-magnifying-glass text-dark"></i></span>
-    </div>
-    <span class="input-icon-right ms-2 cursor-pointer d-block d-md-none rounded-circle d-flex align-items-center p-2">
+    <%= form_tag search_path, method: :get, class: "form-group" do %>
+      <div class="input-group w-0 position-relative px-2 d-none d-md-flex">
+        <%= text_field_tag :key, "" , class: "form-control w-auto rounded", placeholder: "Search for photos/albums..." %>
+        <span class="input-icon-right cursor-pointer rounded">
+          <i class="fa-solid fa-magnifying-glass text-dark"></i>
+        </span>
+      </div>
+    <% end %>
+    <span class="input-icon-right ms-2 cursor-pointer d-flex d-md-none rounded-circle align-items-center p-2">
       <i class="fa-solid fa-magnifying-glass text-white "></i>
     </span>
     
@@ -16,7 +20,7 @@
         <% end %>
         <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "btn btn-outline-success text-white ms-4 d-none d-md-block" %>
     <% else %>
-        <%= link_to('Login', new_user_session_path, class: "ms-auto btn btn-outline-success text-white ms-4") %>
+        <%= link_to('Login', new_user_session_path, class: "ms-auto btn btn-light ms-4") %>
     <% end %>      
   </header>
 </div>

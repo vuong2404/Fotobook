@@ -44,6 +44,16 @@ class PhotosController < ApplicationController
     end
   end
 
+  def search
+    if params[:key] && params[:key] != ""
+      key = Photo.sanitize_sql_like(params[:key])
+      @results = Photo.where("title LIKE ? OR description LIKE ?", "%#{key}%", "%#{key}%").limit(20)
+      render "photos/search_result", layout: 'search/search_layout'
+    else
+      render :html => "Must have a key to search!"
+    end
+  end
+
   private
     def photo_params
       params.required(:photo).permit(:title, :description, :image, :sharing_mode)

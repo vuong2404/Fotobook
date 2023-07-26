@@ -18,6 +18,13 @@ Rails.application.routes.draw do
     resources :users, except: [:create, :new]
   end 
 
+  scope "/search" do 
+    get '/all', to: "home#search",  as: "search"
+    get '/photos', to: "photos#search", as: "search_photos"
+    get '/albums', to: "albums#search", as: "search_albums"
+    get '/users', to: "users#search",  as: "search_users"
+  end 
+
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations' 

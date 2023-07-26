@@ -13,7 +13,8 @@
   }
 
 .main-content {
-    min-height: calc(100vh - var(--header-height))
+    min-height: calc(100vh - var(--header-height));
+    transition: all linear 0.4s;
 }
 .authen-wrapper {
     max-width: 400px;

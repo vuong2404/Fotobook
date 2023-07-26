@@ -1,0 +1,9 @@
+<div class=" col-10 mx-auto px-3 bg-light my-5 rounded"> 
+  <ul class="shadow p-3 rounded shadow border">
+    <% @results.each do |user| %>
+      <%= render partial: "users/search_item", locals: {user: user} %>
+    <% end %>
+  
+    <%= link_to "More ...", search_photos_path(@key), class: "btn btn-light border mt-3 fw-bold w-100" %>
+  </ul>
+</div>

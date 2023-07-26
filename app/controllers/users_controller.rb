@@ -97,4 +97,14 @@ class UsersController < ApplicationController
     end 
   end
 
+  def search
+    if params[:key] && params[:key] != ""
+      key = User.sanitize_sql_like(params[:key])
+      @results = User.where("fname LIKE ? OR lname LIKE ?", "%#{key}%", "%#{key}%").limit(20)
+      render "users/search_result", layout: "search/search_layout"
+    else
+      render :html => "Must have a key to search!"
+    end
+  end
+
 end
