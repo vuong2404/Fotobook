@@ -10,12 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_17_033124) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_26_092006) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.integer "record_id", null: false
-    t.integer "blob_id", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
@@ -34,7 +37,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_17_033124) do
   end
 
   create_table "active_storage_variant_records", force: :cascade do |t|
-    t.integer "blob_id", null: false
+    t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
@@ -45,13 +48,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_17_033124) do
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_albums_on_user_id"
   end
 
   create_table "connections", id: false, force: :cascade do |t|
-    t.integer "follower_id"
-    t.integer "following_id"
+    t.bigint "follower_id"
+    t.bigint "following_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["follower_id", "following_id"], name: "index_connections_on_follower_id_and_following_id", unique: true
@@ -60,9 +63,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_17_033124) do
   end
 
   create_table "likes", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.string "likeable_type", null: false
-    t.integer "likeable_id", null: false
+    t.bigint "likeable_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["likeable_type", "likeable_id"], name: "index_likes_on_likeable"
@@ -75,8 +78,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_17_033124) do
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id", null: false
-    t.integer "album_id"
+    t.bigint "user_id", null: false
+    t.bigint "album_id"
     t.index ["album_id"], name: "index_photos_on_album_id"
     t.index ["user_id"], name: "index_photos_on_user_id"
   end
@@ -84,8 +87,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_17_033124) do
   create_table "temporary_connections", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "follower_id", null: false
-    t.integer "following_id", null: false
+    t.bigint "follower_id", null: false
+    t.bigint "following_id", null: false
     t.index ["follower_id"], name: "index_temporary_connections_on_follower_id"
     t.index ["following_id"], name: "index_temporary_connections_on_following_id"
   end
@@ -101,6 +104,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_17_033124) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "uid"
+    t.string "provider"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

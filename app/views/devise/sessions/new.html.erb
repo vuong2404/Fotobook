@@ -1,6 +1,17 @@
 
 <div class="flex-fill d-flex flex-column justify-content-center align-items-center w-100 h-100 p-5">
   <h2 class="text-center text-primary m-0">FotoBook Login</h2>
+  <%- if devise_mapping.omniauthable? %>
+    <%- resource_class.omniauth_providers.each do |provider| %>
+      <%= form_for "Login",
+        url: omniauth_authorize_path(resource_name, provider),
+        method: :post,
+        data: {turbo: "false"} do |f| %>
+          <%= f.submit "Login", type: "image", src: url_for("https://yt3.googleusercontent.com/ytc/AOPolaQ57PDKphyLQYYZyKoHCtg22kw8zzrRu1j6pU_R9w=s900-c-k-c0x00ffffff-no-rj"), style: "width: 50px;" %>
+      <% end %>  
+  <% end %>
+<% end %>
+
   <div class="authen-wrapper shadow-sm w-100 mx-auto p-3 mt-2 rounded-4">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name), 
       html: { class: "d-flex flex-column align-items-center p-1 m-auto" }) do |f| %>
