@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   paginates_per 25
   devise :database_authenticatable, :registerable,
-        :recoverable, :rememberable, :validatable, :omniauthable, :omniauth_providers => [:google_oauth2]
+        :recoverable, :rememberable, :validatable, :omniauthable, :omniauth_providers => [:google_oauth2, :facebook]
 
   attr_readonly :role
   before_create :set_default_value
@@ -57,6 +57,9 @@ class User < ApplicationRecord
       user.avatar.attach(io: URI.open(auth.info.image), filename: "avatar#{auth.uid}") 
     end
   end
+
+end
+
 
   private
 
