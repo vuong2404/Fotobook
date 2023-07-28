@@ -30,7 +30,7 @@
             <%= image_tag post.user.avatar, class: "mini-avatar" %>
             <h6 class='ms-2 my-0 fs-7'><%= post.user.fname + " " + post.user.lname%> </h6>
           <% end %>
-          <%= render partial: 'shared/follow_button', locals: {profile_user_id: post.user.id, is_followed: current_user && current_user.follow?(post.user.id)} %> 
+          <%= render partial: 'shared/follow_button', locals: {user: post.user} %> 
         </div>
         <h5 class="card-title"><%= post.title %></h5>
         <p class="card-text"><%=post.description %></p>

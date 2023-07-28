@@ -1,0 +1,39 @@
+<div class= "card col col-12 col-md-6 post-item p-2 border-0 align-content-stretch">
+  <div class="row g-0 border rounded shadow h-100">
+    <div class="col-12 col-lg-5 position-relative post-image-container">
+      <%if album.photos.size > 0  %>
+          <%= link_to album_path(album.id), data: { turbo_frame: "remote_modal" } do %>
+            <% album.photos.each do |photo| %>
+              <% if photo.image.attached? %>
+                <%= image_tag photo.image , class: "img-fluid rounded-start post-image w-100 h-100" %>
+              <% end %>
+            <% end %>
+          <% end %>
+      <% else %>
+        <%= render "shared/empty_album" %>
+      <% end %>
+      <span class="position-absolute rounded-circle text-white z-100 home-image-counter">
+        <b class='text-center m-0 fs-4'><%= album.photos.size %></b>
+        <p class='text-center m-0'>PHOTOS</p>
+      </span>
+    </div>
+    <div class="col-12 col-lg-7">
+      <div class="card-body d-flex flex-column h-100">
+        <div class="d-flex align-items-center justify-content-between mb-3">
+          <%= link_to profile_path(album.user), class: "col-lg-8 d-flex align-items-center text-decoration-none text-primary me-1" do %>
+            <%= image_tag album.user.avatar, class: "mini-avatar" %>
+            <h6 class='ms-2 my-0 fs-7'><%= album.user.fname + " " + album.user.lname%> </h6>
+          <% end %>
+          <%= render partial: 'shared/follow_button', locals: {user: album.user} %> 
+        </div>
+        <h5 class="card-title"><%= album.title %></h5>
+        <p class="card-text"><%=album.description %></p>
+        <div class="d-flex justify-content-between mt-auto align-items-center">
+          
+          <%= render partial: "shared/like_button", locals: {post: album} %>
+          <p class="card-text"><small class="text-muted"><%= album.created_at %></small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

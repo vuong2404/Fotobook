@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FinalApp</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <div class='wrapper'>
+      <% if current_user && current_user.admin? %>
+        <%= link_to "Go to Admin dashboard", admin_users_path, class: "btn btn-warning position-fixed bottom-0 end-0 z-100"  %>
+      <% end %>
+      <%= render 'layouts/header' %>  
+      <div class="container-xl container-fluid position-relative main-content">
+        <div class="row justify-content-center position-relative h-100">
+          <div class="d-flex flex-column justify-content-center shadow col-12 col-lg-10 col-xl-10 p-3">
+            <%= yield %>
+          </div>
+          <%= turbo_frame_tag "remote_modal", target: "_top" %>          
+        </div>
+      </div>
+    </div>
+  </body>
+
+  
+</html>

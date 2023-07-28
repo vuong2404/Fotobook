@@ -1,4 +1,4 @@
-<div class='row'>
+<div class='row px-3'>
     <%= link_to "Add new #{post_type =='photos' ? "photos" : "albums"}", post_type =='photos' ? new_photo_path : new_album_path, class: "btn btn-success w-25 ms-auto" %>
 </div>
 <div class='row'> 
@@ -17,7 +17,7 @@
             <% end %> 
 
             <p class="mt-2 line-1"><%= post.title%></p>
-            <% if post.sharing_mode == 'private' && @is_owner%>
+            <% if post.sharing_mode == 'private' && current_user.id == post.user.id%>
               <%= link_to is_photo ? edit_photo_path(post) : edit_album_path(post), class: "btn btn-light position-absolute rounded-circle m-2 z-100", style: "top: 0; right: 0;" do %>
                 <i class="fa-solid fa-lock"></i>
               <% end %>
