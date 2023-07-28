@@ -8,14 +8,14 @@ def generate_random_image
   # Fetch random image
 end
 
-# 50.times do URL from Unsplash API
-#   User.create(
-#     fname: Faker::Name.first_name,
-#     lname: Faker::Name.last_name,
-#     email: Faker::Internet.email,
-#     password: "123456",
-#   )
-# end	
+50.times do
+  User.create(
+    fname: Faker::Name.first_name,
+    lname: Faker::Name.last_name,
+    email: Faker::Internet.email,
+    password: "123456",
+  )
+end	
 
 # Seed 20 albums
 10.times do

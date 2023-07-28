@@ -22,7 +22,7 @@
   </header>
 </div>
 
-<% path = URI.parse(request.original_url).path.split('/').reject(&:empty?)  %>
+<% path = URI.parse(request.original_url).path.split('/')  %>
 <div class='admin-sidebar-container'>
   <ul class="bg-light my-0 h-100 me-3  text-decoration-none py-3 shadow px-3"> 
     <h5 class="welcome-text px-2 text-center mt-3 fw-bold">Welcome back, </h5>
