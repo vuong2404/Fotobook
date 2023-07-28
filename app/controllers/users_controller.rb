@@ -21,28 +21,28 @@ class UsersController < ApplicationController
   end 
   
   def follow
-    following_user_id = params[:user_id]
+    @user = User.exists?(params[:user_id]) && User.find(params[:user_id])
     begin
-      current_user.followings_connections.create(following_id: following_user_id.to_i)
+      current_user.followings_connections.create(following_id: @user.id)
       render :turbo_stream => turbo_stream.replace_all(
-                              ".follow_user#{following_user_id}",
+                              ".follow_user#{@user.id}",
                               partial: 'shared/follow_button',
-                              locals: { profile_user_id: following_user_id, is_followed: true } )
+                              locals: { user: @user } )
     rescue  Exception => e
       render file: "#{Rails.root}/public/500.html", layout: true
     end
   end
 
   def unfollow
-    following_user_id = params[:user_id]
+    @user = User.exists?(params[:user_id]) && User.find(params[:user_id])
     begin
-      current_user.followings_connections.where(following_id: following_user_id.to_i).delete_all
+      current_user.followings_connections.where(following_id: @user.id).delete_all
       current_user.save!
 
       render :turbo_stream => turbo_stream.replace_all(
-          ".follow_user#{following_user_id}",
+          ".follow_user#{@user.id}",
           partial: 'shared/follow_button',
-          locals: { profile_user_id: following_user_id, is_followed: false } )
+          locals: { user: @user} )
     rescue  Exception => e
       render file: "#{Rails.root}/public/500.html", layout: true
     end

@@ -2,6 +2,8 @@
   <% @photos.each do |photo| %>
     <%= render partial: "home/photo_item", locals: {photo: photo} %>
   <% end %>
+  
+
 <% end %>
 
 <% if @pagy.next.present? %>
@@ -9,3 +11,4 @@
     <%= turbo_frame_tag "pagination", src: root_path(page: @pagy.next, format: :turbo_stream), loading: :lazy %>
   <% end %>
 <% end %>
+
