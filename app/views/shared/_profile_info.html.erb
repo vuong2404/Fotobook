@@ -1,0 +1,38 @@
+  <div class="profile d-flex mt-4">
+    <%= image_tag user.avatar, class: "profile__avatar rounded-circle me-4 border" %>
+    <div class="profile-info flex-fill justify-content-end h-100"> 
+      <% if current_user %>
+        <% if user.id == current_user.id %>
+          <%= link_to "Edit profile", edit_user_registration_path, class: "btn btn-outline-primary my-3" %>
+        <% else %>
+          <%= render partial:  'shared/follow_button', locals: {user: user} %>
+        <% end %>
+      <% end %>
+      <h2><%=  user.fname + " " + user.lname %></h2>
+      <ul class="nav nav-tabs border-0 d-flex my-2">
+        <% path = URI.parse(request.original_url).path.split('/')  %>
+        <li class="nav-item">
+          <%= link_to profile_path(user.id),  class: "nav-link border-0 fw-bold #{"active" if ((["albums", "followings", "followers" ] & path).empty?)}" do %>
+            <i class='fs-5'><%= user.photos.size %> </i>photos
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to profile_albums_path(user.id),  class: "nav-link border-0 fw-bold #{"active" if path.include?("albums")}" do %>
+            <i class='fs-5'><%= user.albums.size %> </i>albums
+          <% end %>
+        </li>
+  
+        <li class="nav-item">
+          <%= link_to profile_followings_path(user.id),  class: "nav-link border-0 fw-bold #{"active" if path.include?("followings")}" do %>
+            <i class='fs-5'><%= user.followings.size %> </i>followings
+          <% end %>
+        </li>
+  
+        <li class="nav-item">
+          <%= link_to profile_followers_path(user.id),  class: "nav-link border-0 fw-bold #{"active" if path.include?("followers")}" do %>
+            <i class='fs-5'><%= user.followers.size %> </i>followers
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>

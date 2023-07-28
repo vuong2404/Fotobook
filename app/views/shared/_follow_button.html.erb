@@ -1,9 +1,9 @@
 <% if current_user %>
-  <%= turbo_frame_tag "follow_user#{profile_user_id}", class: "follow_user#{profile_user_id}" do %>
-    <% if is_followed %>
-      <%= button_to "Following", unfollow_user_path(profile_user_id), method: :delete, class: "btn btn-following mini" %> 
+  <%= turbo_frame_tag "follow_user#{user.id}", class: "follow_user#{user.id}" do %>
+    <% if current_user.follow?(user.id) %>
+      <%= button_to "Following", unfollow_user_path(user.id), method: :delete, class: "btn btn-following mini" %> 
     <%else %>
-      <%= button_to "Follow", follow_user_path(profile_user_id), method: :post, class: "btn btn-follow mini" %> 
+      <%= button_to "Follow", follow_user_path(user.id), method: :post, class: "btn btn-follow mini" %> 
     <%end %>
   <%end %>
 <%else %>

@@ -1,0 +1,11 @@
+<%= turbo_stream.append "feed-albums" do %>
+  <% @albums.each do |album| %>
+    <%= render partial: "home/album_item", locals: {album: album} %>
+  <% end %>
+<% end %>
+
+<% if @pagy.next.present? %>
+  <%= turbo_stream.replace "pagination" do %>
+    <%= turbo_frame_tag "pagination", src: feed_albums_path(page: @pagy.next, format: :turbo_stream), loading: :lazy %>
+  <% end %>
+<% end %>

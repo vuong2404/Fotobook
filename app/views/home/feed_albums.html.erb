@@ -1,0 +1,6 @@
+<%= render partial: "shared/home_nav", locals: {page: "feed"}%>
+<div id="feed-albums" class="row list-posts g-2"></div>
+
+<%= turbo_frame_tag "pagination", src: feed_albums_path(format: :turbo_stream), loading: :lazy %>
+
+

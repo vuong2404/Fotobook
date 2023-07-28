@@ -1,0 +1,11 @@
+<%= turbo_stream.append "photos" do %>
+  <% @photos.each do |photo| %>
+    <%= render partial: "home/photo_item", locals: {photo: photo} %>
+  <% end %>
+<% end %>
+
+<% if @pagy.next.present? %>
+  <%= turbo_stream.replace "pagination" do %>
+    <%= turbo_frame_tag "pagination", src: root_path(page: @pagy.next, format: :turbo_stream), loading: :lazy %>
+  <% end %>
+<% end %>

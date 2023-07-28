@@ -1,0 +1,4 @@
+<%= render "shared/profile_info", user: @user %>
+<div class="mt-4">
+  <%= render partial: 'users/follow-list', object: @followers, as: "follows" %>
+</div>

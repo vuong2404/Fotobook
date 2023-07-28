@@ -1,37 +1,33 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_user! , only: [:show]
+  before_action :get_user, :only => [:show,:show_albums, :show_followings, :show_followers]
+
+  layout "profile/profile_layout", only: [:show,:show_albums, :show_followings, :show_followers]
+  
   def show
-    user_id = params[:id]
-    page = params[:page] || "photos"
-
-    puts params
-    if User.exists?(user_id)
-      user = User.find(user_id)
-      @is_owner = current_user && current_user.id.to_i == user_id.to_i
-      @is_followed = current_user && current_user.follow?(user_id)
-      @photos = user.photos
-      @albums = user.albums
-      @followers = user.followers
-      @followings = user.followings
-      @profile_user_id = user.id
-      @full_name = user.fname + " " + user.lname
-      @avatar = user.avatar
-
-    else
-      render file: "#{Rails.root}/public/404.html", layout: true, status: :not_found
-    end 
+    @photos = @user.photos
   end
+
+  def show_albums
+    @albums = @user.albums
+  end 
+  
+  def show_followings
+    @followings = @user.followings
+  end 
+
+  def show_followers
+    @followers = @user.followers
+  end 
   
   def follow
     following_user_id = params[:user_id]
     begin
-        current_user.followings_connections.new(following_id: following_user_id.to_i)
-        current_user.save!
-
-        render :turbo_stream => turbo_stream.replace_all(
-            ".follow_user#{following_user_id}",
-            partial: 'shared/follow_button',
-            locals: { profile_user_id: following_user_id, is_followed: true } )
+      current_user.followings_connections.create(following_id: following_user_id.to_i)
+      render :turbo_stream => turbo_stream.replace_all(
+                              ".follow_user#{following_user_id}",
+                              partial: 'shared/follow_button',
+                              locals: { profile_user_id: following_user_id, is_followed: true } )
     rescue  Exception => e
       render file: "#{Rails.root}/public/500.html", layout: true
     end
@@ -106,5 +102,15 @@ class UsersController < ApplicationController
       render :html => "Must have a key to search!"
     end
   end
+
+
+  private
+    def get_user
+      if User.exists?(params[:id])
+        @user = User.find_by_id(params[:id])
+      else 
+        render file: "#{Rails.root}/public/404.html", layout: true, status: :not_found
+      end
+    end
 
 end

@@ -3,22 +3,47 @@ class HomeController < ApplicationController
   layout "search/search_layout", only: [:search]
   def feed
     if current_user
-      # show feed using following
-      # lấy tất cả post(photo, albums) của user mà người đó follow
       followed_users = Connection.where(follower_id: current_user.id).pluck(:following_id)
-      @photos = Photo.where(user_id: followed_users)
-      @albums = Album.where(user_id: followed_users)      
+      @pagy, @photos = pagy(Photo.all.order(:created_at), items: 4)
+      respond_to do |format|
+        format.html 
+        format.turbo_stream
+      end
     else
-      
+      redirect_to discovery_path
     end
-    
+  end
 
+
+  def feed_albums 
+    if current_user
+      followed_users = Connection.where(follower_id: current_user.id).pluck(:following_id)
+      @pagy, @albums = pagy(Album.where(user_id: followed_users).order(:created_at), items: 4)
+      respond_to do |format|
+        format.html 
+        format.turbo_stream
+      end
+    else
+      redirect_to discovery_path
+    end
   end
 
   def discovery
-    @photos = Photo.order(created_at: :desc).limit(20)
-    @albums = Album.order(created_at: :desc).limit(20)  
+    @pagy, @photos = pagy(Photo.order(:created_at), items: 4)
+    respond_to do |format|
+      format.html 
+      format.turbo_stream
+    end
   end 
+
+
+  def discovery_albums
+    @pagy, @albums = pagy(Album.order(:created_at), items: 4)
+    respond_to do |format|
+      format.html 
+      format.turbo_stream
+    end
+  end
 
 
   def search 

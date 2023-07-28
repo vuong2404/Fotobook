@@ -1,5 +1,8 @@
-<div class="row list-posts g-2">
-	<% posts && posts.each do |post| %>
-		<%= render partial: "home/post-item", object: post, as: "post" %>
-	<% end %>
-</div>
+ <% "https://dev.to/chwistophe/rails-7-pagination-with-turbo-frame-streams-infinite-scrolling-stimulus-js-3fih" %>
+<%= turbo_frame_tag "posts_list", src: root_url(format: :turbo_stream, page: params[:page]), loading: "lazy" do %>
+	<div class="row list-posts g-2" id="posts_placeholder">
+		<% posts && posts.each do |post| %>
+			<%= render partial: "home/post-item", object: post, as: "post" %>
+		<% end %>
+	</div>
+<% end %>

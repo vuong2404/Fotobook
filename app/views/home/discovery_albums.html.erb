@@ -1,0 +1,6 @@
+<%= render partial: "shared/home_nav", locals: {page: "discovery"}%>
+<div id="discovery-albums" class="row list-posts g-2"></div>
+
+<%= turbo_frame_tag "pagination", src: discovery_albums_path(format: :turbo_stream), loading: :lazy %>
+
+
