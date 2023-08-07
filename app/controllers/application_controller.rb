@@ -18,7 +18,6 @@ class ApplicationController < ActionController::Base
 		if current_user
       current_user.notifications.mark_as_read!
       @notifications = current_user.notifications.reverse
-			puts "notifications #{notifications}"
     end
 	end 
 	
