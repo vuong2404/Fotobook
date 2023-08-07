@@ -31,6 +31,8 @@ class User < ApplicationRecord
   end
   has_many :likes, dependent: :destroy
 
+  has_many :notifications, as: :recipient, dependent: :destroy
+
   def follow? (user_id)
     Connection.where(follower_id: self.id, following_id: user_id ).exists?
   end
@@ -46,6 +48,10 @@ class User < ApplicationRecord
 
   def admin? 
     self.role == "admin"
+  end
+
+  def fullname 
+    self.fname + " " + self.lname 
   end
 
   

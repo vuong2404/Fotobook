@@ -19,6 +19,9 @@
             <%= yield %>
           </div>
           <%= turbo_frame_tag "remote_modal", target: "_top" %>
+          <% flash.each do |type, msg| %>
+             <%= render 'shared/flashes' %>
+            <% end %>
         </div>
       </div>
     </div>

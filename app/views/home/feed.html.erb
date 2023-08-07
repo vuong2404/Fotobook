@@ -1,5 +1,9 @@
 <%= render partial: "shared/home_nav", locals: {page: "feed"}%>
+
 <div id="photos" class="row list-posts g-2">
+  <% @photos.each do |photo| %>
+    <%= render partial: "home/photo_item", locals: {photo: photo} %>
+  <% end %>
 </div>
 
 <%= turbo_frame_tag "pagination", src: root_path(format: :turbo_stream), loading: :lazy %>

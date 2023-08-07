@@ -22,6 +22,9 @@
           <div class="col-12 col-lg-10 col-xl-10 d-flex flex-column shadow rounded bg-white p-4 ">
             <%= yield %>
             <%= turbo_frame_tag "remote_modal", target: "_top" %>
+            <% flash.each do |type, msg| %>
+             <%= render 'shared/flashes' %>
+            <% end %>
           </div>
         </div>
       </div>
