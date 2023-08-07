@@ -23,13 +23,15 @@ class UsersController < ApplicationController
   def follow
     @user = User.exists?(params[:user_id]) && User.find(params[:user_id])
     begin
-      current_user.followings_connections.create(following_id: @user.id)
+      current_user.followings_connections.new(following_id: @user.id)
+      current_user.save!
       render :turbo_stream => turbo_stream.replace_all(
                               ".follow_user#{@user.id}",
                               partial: 'shared/follow_button',
                               locals: { user: @user } )
     rescue  Exception => e
-      render file: "#{Rails.root}/public/500.html", layout: true
+      render :json => e
+      # render file: "#{Rails.root}/public/500.html", layout: true
     end
   end
 

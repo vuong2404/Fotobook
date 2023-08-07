@@ -2,8 +2,6 @@
   <% @photos.each do |photo| %>
     <%= render partial: "home/photo_item", locals: {photo: photo} %>
   <% end %>
-  
-
 <% end %>
 
 <% if @pagy.next.present? %>

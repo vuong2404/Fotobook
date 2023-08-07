@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "home#feed"
+  root to: "home#feed"
 
   get  "/feed/albums", to: "home#feed_albums", as: :feed_albums
   get  "/discovery", to: "home#discovery", as: :discovery
