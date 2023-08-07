@@ -14,7 +14,8 @@
     </span>
     
     <% if current_user %>
-        <%= link_to(profile_path(current_user), class: 'ms-auto btn user-info d-flex align-items-center text-white text-decoration-none') do %>
+        <%= render "notifications/notifications", notifications: @notifications %>
+        <%= link_to(profile_path(current_user), class: 'btn user-info d-flex align-items-center text-white text-decoration-none') do %>
             <%= image_tag(current_user.avatar, class: "user-info__avatar rounded-circle border") if current_user.avatar.attached? %>
             <span class="ms-2 text-nowrap"><%= current_user.fname + " " + current_user.lname %></span>
         <% end %>

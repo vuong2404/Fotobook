@@ -1,0 +1,16 @@
+<% if current_user %>
+  <div class="dropdown ms-auto">
+    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="fas fa-bell text-white"></i>
+        <span class="badge rounded-pill badge-notification bg-danger"> <%= notifications.size %></span>
+    </button>
+    <%= turbo_stream_from "notifications_follow_#{current_user.id}" %>
+    <%= turbo_frame_tag "notifications_follow_#{current_user.id}" do %>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <% notifications.each do |notification| %>
+          <%= render "notifications/notification", follower: notification.to_notification.follower %>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+<% end %>

@@ -6,7 +6,7 @@
         <%= render partial: "users/search_item", locals: {user: user} %>
       <% end %>
 
-      <%= link_to "More ...", search_photos_path(key: @key), class: "btn btn-outline-primary border mt-3 fw-bold w-100" %>
+      <%= link_to "More ...", search_users_path(key: @key), class: "btn btn-outline-primary border mt-3 fw-bold w-100" %>
     </ul>
   <% end %>
 
