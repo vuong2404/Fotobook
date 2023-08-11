@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :authenticate_user! , only: [:show]
+  skip_before_action :authenticate_user! , only: [:show, :show_albums, :show_followings, :show_followers, :search]
   before_action :get_user, :only => [:show,:show_albums, :show_followings, :show_followers]
 
   layout "profile/profile_layout", only: [:show,:show_albums, :show_followings, :show_followers]
@@ -109,7 +109,10 @@ class UsersController < ApplicationController
   private
     def get_user
       if User.exists?(params[:id])
-        @user = User.find_by_id(params[:id])
+        @user = User.find(params[:id])
+        if current_user 
+          @is_owner = @user.id == current_user.id
+        end
       else 
         render file: "#{Rails.root}/public/404.html", layout: true, status: :not_found
       end

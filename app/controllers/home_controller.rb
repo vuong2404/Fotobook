@@ -4,7 +4,7 @@ class HomeController < ApplicationController
   def feed
     if current_user
       followed_users = Connection.where(follower_id: current_user.id).pluck(:following_id)
-      @pagy, @photos = pagy(Photo.all.order(:created_at), items: 4)
+      @pagy, @photos = pagy(Photo.where(user_id: followed_users).order(:created_at), items: 4)
       respond_to do |format|
         format.html 
         format.turbo_stream

@@ -1,12 +1,12 @@
-<div class="bg-primary py-1 d-flex m-auto px-0 px-md-3" id="header">
-  <header class="header container-fluid py-2 d-flex align-items-center mx-0 mx-md-2 px-0">
-    <%= link_to "Fotobook", root_path, class: "text-white h2 m-0 text-decoration-none" %>
-    <%= form_tag search_path, method: :get, class: "form-group" do %>
+<div class="bg-primary py-1 d-flex justify-content-center px-0 px-md-3" id="header">
+  <header class="header container py-2 d-flex align-items-center mx-0 mx-md-2 px-0">
+    <%= link_to "Fotobook", root_path, class: "text-white h2 m-0 me-3 fw-bold text-decoration-none" %>
+    <%= form_tag search_path, method: :get, class: "form-group search-form" do %>
       <div class="input-group w-0 position-relative px-2 d-none d-md-flex">
-        <%= text_field_tag :key, "" , class: "form-control w-auto rounded", placeholder: "Search for photos/albums..." %>
-        <span class="input-icon-right cursor-pointer rounded">
+        <%= text_field_tag :key, "" , class: "form-control search-form__text--input w-auto rounded", placeholder: "Search for photos/albums..." %>
+        <button class="input-icon-right btn btn-light cursor-pointer rounded">
           <i class="fa-solid fa-magnifying-glass text-dark"></i>
-        </span>
+        </button>
       </div>
     <% end %>
     <span class="input-icon-right ms-2 cursor-pointer d-flex d-md-none rounded-circle align-items-center p-2">
