@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root to: "home#feed"
 
-  get  "/feed/albums", to: "home#feed_albums", as: :feed_albums
+  get  "/feeds/albums", to: "home#feed_albums", as: :feed_albums
   get  "/discovery", to: "home#discovery", as: :discovery
   get  "/discovery/albums", to: "home#discovery_albums", as: :discovery_albums
 

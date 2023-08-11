@@ -84,7 +84,7 @@ class User < ApplicationRecord
 
   def delete_dependency
     # Remove the connections from followers and followings
-    self.followers.destroy_all
-    self.followings.destroy_all
+    self.followers.delete_all
+    self.followings.delete_all
   end 
 end

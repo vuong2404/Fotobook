@@ -1,4 +1,11 @@
 <%= render "shared/remote_modal", title: @album.title do %>	
+  <div class="d-flex align-items-center justify-content-between mb-3">
+		<%= link_to profile_path(@album.user), class: "col-lg-8 d-flex align-items-center text-decoration-none text-dark me-1" do %>
+			<%= image_tag @album.user.avatar, class: "mini-avatar" %>
+			<h6 class='ms-2 my-0 fs-7 fw-bold'><%= @album.user.fname + " " + @album.user.lname%> </h6>
+		<% end %>
+		<%= render partial: 'shared/follow_button', locals: {user: @album.user} %> 
+	</div>
   <div id="carouselExampleControlsNoTouching" class="carousel slide carousel-fade" data-bs-ride="carousel">
     <div class="carousel-inner">
       <% @album.photos.each_with_index do |photo, index| %>

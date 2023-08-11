@@ -1,0 +1,11 @@
+<% "https://dev.to/chwistophe/rails-7-pagination-with-turbo-frame-streams-infinite-scrolling-stimulus-js-3fih" %>
+<div class="row list-posts g-2" id="posts_placeholder">
+	<% posts && posts.each do |post| %>
+		<% if post.is_a? Photo %>
+			<%= render  "home/photo_item", photo: post %>
+		<% else %>
+			<%= render  "home/album_item", album: post %>
+		<% end %>
+	<% end %>
+</div>
+

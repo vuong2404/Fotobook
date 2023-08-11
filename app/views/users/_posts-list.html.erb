@@ -1,11 +1,13 @@
-<div class='row px-3'>
-    <%= link_to "Add new #{post_type =='photos' ? "photos" : "albums"}", post_type =='photos' ? new_photo_path : new_album_path, class: "btn btn-success w-25 ms-auto" %>
-</div>
+<% if @is_owner %>
+  <div class='row px-3'>
+      <%= link_to "Add new #{post_type =='photos' ? "photos" : "albums"}", post_type =='photos' ? new_photo_path : new_album_path, class: "btn btn-success w-25 ms-auto" %>
+  </div>
+<% end %>
 <div class='row'> 
   <% if posts.size > 0 %>
     <% posts.each do |post| %>
       <% is_photo = post.is_a?(Photo) %>
-      <div class="card col-md-2 post-item p-2 border-0 text-center">
+      <div class="card col-md-3 col-6 post-item p-3 border-0 text-center">
         <%= link_to is_photo ? photo_path(post.id) : album_path(post.id), class: 'text-decoration-none text-dark', data: { turbo_frame: "remote_modal" } do %>
           <div class="position-relative post-image-container position-relative" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <% if is_photo %>
@@ -16,16 +18,24 @@
               <% end %>
             <% end %> 
 
-            <p class="mt-2 line-1"><%= post.title%></p>
-            <% if post.sharing_mode == 'private' && current_user.id == post.user.id%>
+            <% if post.sharing_mode == 'private' && current_user && current_user.id == post.user.id%>
               <%= link_to is_photo ? edit_photo_path(post) : edit_album_path(post), class: "btn btn-light position-absolute rounded-circle m-2 z-100", style: "top: 0; right: 0;" do %>
                 <i class="fa-solid fa-lock"></i>
               <% end %>
+            <% end %> 
+
+            <% if post.is_a?(Album) %>
+              <span class="position-absolute rounded-circle text-white z-100 home-image-counter">
+                <b class='text-center m-0 fs-4'><%= post.photos.size %></b>
+                <p class='text-center m-0'>PHOTOS</p>
+              </span>
             <% end %>
-            <% if @is_owner%>
-              <%= link_to "Edit", is_photo ? edit_photo_path(post) : edit_album_path(post), class: "bg-dark-rgba text-white text-decoration-none px-2 py-1 rounded position-absolute m-2 border-0 z-100", style: "bottom: 50px; right: 0;" %>
+            <% if @is_owner %>
+              <%= link_to "Edit", is_photo ? edit_photo_path(post) : edit_album_path(post), class: "bg-dark-rgba text-white text-decoration-none px-2 py-1 rounded position-absolute m-2 border-0 z-100", style: "bottom: 8px; right: 0;" %>
             <% end %>  
           </div>
+          <p class="mt-2 line-1"><%= post.title%></p>
+
         <% end %>
       </div>
     <% end %> 

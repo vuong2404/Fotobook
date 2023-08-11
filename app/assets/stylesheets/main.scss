@@ -88,12 +88,12 @@
     z-index: 4;
 }
 
-.post-image-:nth-child(4n+2) {
+.post-image-:nth-child(4n+1) {
     transform: rotate(6deg);
     z-index: 3;
 }
 
-.post-image:nth-child(4n+3) {
+.post-image:nth-child(4n+2) {
     transform: rotate(9deg);
     z-index: 2;
 }
@@ -134,6 +134,7 @@
     height: 150px;
     width: 150px;
     border-radius: 5px;
+    border: 1px solid var(--primary);
     background-color: #f8f9fa;
     color: #000;
 }

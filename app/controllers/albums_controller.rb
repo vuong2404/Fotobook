@@ -1,5 +1,7 @@
 class AlbumsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:show]
+  skip_before_action :authenticate_user!, only: [:show, :search]
+  layout "profile/profile_layout", only: [:new, :edit]
+
 
   def show
     if  Album.exists?(params[:id])

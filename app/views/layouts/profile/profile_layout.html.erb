@@ -11,14 +11,14 @@
   </head>
 
   <body>
-    <div class='wrapper'>
+    <div class='wrapper bg-light'>
       <% if current_user && current_user.admin? %>
         <%= link_to "Go to Admin dashboard", admin_users_path, class: "btn btn-warning position-fixed bottom-0 end-0 z-100"  %>
       <% end %>
       <%= render 'layouts/header' %>  
       <div class="container-xl container-fluid position-relative main-content">
-        <div class="row justify-content-center position-relative h-100">
-          <div class="d-flex flex-column justify-content-center shadow col-12 col-lg-10 col-xl-10 p-3">
+        <div class="row justify-content-center position-relative">
+          <div class="d-flex flex-column fill-screen col-12 col-lg-10 px-5 py-3 bg-white">
             <%= yield %>
           </div>
           <%= turbo_frame_tag "remote_modal", target: "_top" %>          
