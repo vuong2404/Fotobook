@@ -95,13 +95,21 @@ img {
   background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity));
 }
 
+.search-form .input-group {
+  .search-form__text--input {
+    padding-right: 30px;
+  }
+  .input-icon-right {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    right: 0;
+    bottom: 0 ;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
 
-.input-group .input-icon-right {
-  position: absolute;
-  top: 50%;
-  right: 12px;
-  transform: translate(-50%,-50%);
-  z-index: 10;
 }
 
 

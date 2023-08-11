@@ -2,7 +2,7 @@
   <h2 class="text-center text-primary m-0">Register Fotobook</h2>
   <div class="authen-wrapper shadow-sm w-100 mx-auto p-3 mt-2 rounded-4">
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), 
-     html: { class: "d-flex flex-column align-items-center p-1 m-auto" }) do |f| %>
+     html: { class: "d-flex flex-column align-items-center p-1 m-auto", "data-turbo": "false" }) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
 
       <%= image_tag("loginImg.png", class: "mx-auto")%>
@@ -36,8 +36,8 @@
         <%= f.password_field :password_confirmation, autocomplete: "new-password",class: "form-control"  %>
       </div>
 
-      <div class="actions">
-        <%= f.submit "Sign up",  class: "m-2 px-3 py-1 btn btn-primary" %>
+      <div class="actions w-100">
+        <%= f.submit "Sign up",  class: "m-2 px-3 py-1 btn btn-primary w-100" %>
       </div>
     <% end %>
   </div>

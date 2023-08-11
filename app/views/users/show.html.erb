@@ -1,4 +1,4 @@
 <%= render "shared/profile_info", user: @user %>
-<div class="mt-4">
+<div class="mt-4 h-100">
   <%= render partial: 'users/posts-list', locals: {posts: @photos, post_type: 'photos'} %>
 </div>

@@ -1,4 +1,11 @@
 <%= render "shared/remote_modal", title: @photo.title do %>	
+	<div class="d-flex align-items-center justify-content-between mb-3">
+		<%= link_to profile_path(@photo.user), class: "col-lg-8 d-flex align-items-center text-decoration-none text-dark me-1" do %>
+			<%= image_tag @photo.user.avatar, class: "mini-avatar" %>
+			<h6 class='ms-2 my-0 fs-7 fw-bold'><%= @photo.user.fname + " " + @photo.user.lname%> </h6>
+		<% end %>
+		<%= render partial: 'shared/follow_button', locals: {user: @photo.user} %> 
+	</div>
 	<%= image_tag @photo.image, class:"img-fluid rounded-start h-50" %>
 
 	<p class="card-text"><%= @photo.description %> </p>
